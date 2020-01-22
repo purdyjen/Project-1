@@ -92,7 +92,12 @@
      }
   }
 
+<<<<<<< HEAD
   h1 {
      text-align: center;
       font-family: 'Amatic SC', cursive;
+=======
+  .container {
+      padding-top: 60px;
+>>>>>>> 7961e89ee79f459d0491621b9a6e8139d29470a0
   }
