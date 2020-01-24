@@ -92,15 +92,18 @@ am4core.ready(function() {
 	polygonTemplate.events.on("hit", function(ev) {
 		chart.closeAllPopups();
 		chart.openPopup(ev.target.dataItem.dataContext.name);
+		$(".ampopup-header").hide();
 	  });
+
+	// ADD DIVS FOR PICS AND INFO
 
 	// THIS IS WHERE YOU PUT EVENTS TIED TO POPUP
 	// chart.modal.events.on("opened", function(ev) {
 	// 	console.log(ev);
 	//   });
 
-	// POPUP TITLE
 
+	
 	
 	
 	// Add image series
