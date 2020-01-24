@@ -1,56 +1,114 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
 </head>
+
 <body>
     <!DOCTYPE html>
-<html lang="en">
+    <html lang="en">
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <!-- google fonts-->
-  <link href="https://fonts.googleapis.com/css?family=Amatic+SC|Open+Sans+Condensed:300&display=swap" rel="stylesheet">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <!-- google fonts-->
+        <link href="https://fonts.googleapis.com/css?family=Amatic+SC|Open+Sans+Condensed:300&display=swap"
+            rel="stylesheet">
 
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-  <script src="https://www.amcharts.com/lib/4/core.js"></script>
-  <script src="https://www.amcharts.com/lib/4/maps.js"></script>
-  <script src="https://www.amcharts.com/lib/4/geodata/worldLow.js"></script>
-  <script src="https://www.amcharts.com/lib/4/themes/animated.js"></script>
-  <link rel="stylesheet" href="../Project-1/assets/css/style.css">
-  <script type="text/javascript" src="assets/javascript/app.js"></script>
-  <title>The Bucket</title>
-</head>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+        <script src="https://www.amcharts.com/lib/4/core.js"></script>
+        <script src="https://www.amcharts.com/lib/4/maps.js"></script>
+        <script src="https://www.amcharts.com/lib/4/geodata/worldLow.js"></script>
+        <script src="https://www.amcharts.com/lib/4/themes/animated.js"></script>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+            integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+        <link rel="stylesheet" href="../Project-1/assets/css/style.css">
+        <link rel="stylesheet" href="../Project-1/assets/css/journal.css">
 
-<body>
-  <nav>
-    <div class="nav-wrapper">
-      <a href="#!" class="brand-logo"> The Bucket </a>
-      <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
-      <ul class="right hide-on-med-and-down">
-        <li><a href="index.html">Home</a></li>
-        <li><a href="sass.html">Log-in</a></li>
-        <li><a href="diary.html">My Journal</a></li>   
-      </ul>
-    </div>
-  </nav>
+        <script type="text/javascript" src="assets/javascript/app.js"></script>
+        <title>The Bucket</title>
+    </head>
 
-  <ul class="sidenav" id="mobile-demo">
-    <li><a href="index.html">Home</a></li>
-    <li><a href="sass.html">Log-in</a></li>
-    <li><a href="diary.html">My Journal</a></li>   
-  </ul>
+    <body>
+        <nav>
+            <div class="nav-wrapper">
+                <a href="#!" class="brand-logo"> The Bucket </a>
+                <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+                <ul class="right hide-on-med-and-down">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="sass.html">Log-in</a></li>
+                    <li><a href="diary.html">My Journal</a></li>
+                </ul>
+            </div>
+        </nav>
 
-  <h1> My Journal</h1>
-  <!-- this holds the map -->
-  
+        <ul class="sidenav" id="mobile-demo">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="sass.html">Log-in</a></li>
+            <li><a href="diary.html">My Journal</a></li>
+        </ul>
+
+        <div class="container">
+            <h1> My Journal</h1>
+
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Place Visited</th>
+                        <th scope="col">Destination</th>
+                        <th scope="col">Date</th>
+                        <th scope="col">Comments</th>
+                        <th scope="col">Pictures</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th scope="row">1</th>
+                        <td id="place">Mark</td>
+                        <td id="destination">BLah</td>
+                        <td id="date">Otto</td>
+                        <td id="Picture">@mdo</td>
+                        <td></td>
+                    </tr>
+                </tbody>
+            </table>
+            <br>
+                    <form>
+                        <div class="form-group">
+                            <label for="place visited">PLace Visited</label>
+                            <input type="text" class="form-control" id="exampleFormControlInput1"
+                                placeholder="Place Café">
+                        </div>
+                        <div class="form-group">
+                            <label for="place visited">Destination</label>
+                            <input type="text" class="form-control" id="exampleFormControlInput2"
+                                placeholder="City, State/ Country">
+                        </div>
+                        <div class="form-group">
+                            <label for="place visited">Date</label>
+                            <input type="text" class="form-control" id="exampleFormControlInput3"
+                                placeholder="DD/MM/YYYY">
+                        </div>
+                        <div class="form-group">
+                            <label for="place visited">Comments</label>
+                            <input type="text" class="form-control" id="exampleFormControlInput4"
+                                placeholder="I loved Place Café">
+                        </div>
+                        <button class="btn btn-primary" type="submit">Add me to your journal!</button>
+
+                    </form>
+        </div>
+
+
+    </body>
+
+    </html>
 </body>
 
-</html>
-</body>
 </html>
