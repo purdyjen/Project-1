@@ -79,8 +79,13 @@ am4core.ready(function() {
 	
 	// Configure series
 	var polygonTemplate = polygonSeries.mapPolygons.template;
-	polygonTemplate.tooltipText = "{name}";
-	polygonTemplate.fill = chart.colors.getIndex(0).lighten(0.5);
+	polygonTemplate.events.on("hit", function(ev) {
+  // zoom to an object
+  	ev.target.series.chart.zoomToMapObject(ev.target);
+ 
+  // get object info
+  console.log(ev.target.dataItem.dataContext.name);
+});
 	
 	// Create hover state and set alternative fill color
 	var hs = polygonTemplate.states.create("hover");
@@ -225,5 +230,14 @@ am4core.ready(function() {
 	
 	  return holder;
 	}
+
+	function placeClick(){
+	
+	$('#shape-rendering').click(function(){
+		
+		console.log(placeClick)
+	}
+	)};
+	
 	
 	});
