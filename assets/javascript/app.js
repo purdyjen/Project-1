@@ -53,7 +53,11 @@
 
 // }); //doc ready closing tag
 
+
+
 am4core.ready(function() {
+
+	
 
 	// Themes begin
 	am4core.useTheme(am4themes_animated);
@@ -79,8 +83,39 @@ am4core.ready(function() {
 	
 	// Configure series
 	var polygonTemplate = polygonSeries.mapPolygons.template;
-	polygonTemplate.tooltipText = "{name}";
-	polygonTemplate.fill = chart.colors.getIndex(0).lighten(0.5);
+	polygonTemplate.events.on("hit", function(ev) {
+
+		$("#chartdiv").on("click", function(){
+			$(".popup, .popup-content").addClass("active");
+			});
+
+			// place name
+			 $('#title').append(ev.target.dataItem.dataContext.name);
+
+			//  place pics
+			 $('#placepics').append(ev.target.dataItem.dataContext.name);
+
+			//  place info
+
+			 $('#placeinfo').append(ev.target.dataItem.dataContext.name);
+
+
+			// When this happens, the “active” class is appended to the pop-up classes, thus changing
+			//  the pop-up’s visibility to “visible.” In other words, the pop-up will appear.
+			
+			// This second statement removes the “active” class when the “Close” button is clicked.
+			
+			$(".close, .popup").on("click", function(){
+			$(".popup, .popup-content").removeClass("active");
+			});
+		
+	
+	  // zoom to an object
+  	ev.target.series.chart.zoomToMapObject(ev.target);
+ 
+  	// get object info
+  	console.log(ev.target.dataItem.dataContext.name);
+	});
 	
 	// Create hover state and set alternative fill color
 	var hs = polygonTemplate.states.create("hover");
@@ -225,5 +260,14 @@ am4core.ready(function() {
 	
 	  return holder;
 	}
+
+	function placeClick(){
+	
+	$('#shape-rendering').click(function(){
+		
+		console.log(placeClick)
+	}
+	)};
+	
 	
 	});
