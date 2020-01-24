@@ -91,7 +91,9 @@ am4core.ready(function() {
 	// POPUP ON CLICK  YOU CAN INSERT DATA HERE
 	polygonTemplate.events.on("hit", function(ev) {
 		chart.closeAllPopups();
-		chart.openPopup(ev.target.dataItem.dataContext.name);
+		var popup = chart.openPopup(ev.target.dataItem.dataContext.name);
+		popup.left = ev.svgPoint.x + 15;
+		popup.top = ev.svgPoint.y + 15;
 		$(".ampopup-header").hide();
 	  });
 
