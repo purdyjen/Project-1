@@ -144,5 +144,9 @@
    width: 1.2em;
    height: 1.2em;
    cursor: pointer
- }s
+ }
+
+#link-box {
+    width: 200px;
+ }
     
