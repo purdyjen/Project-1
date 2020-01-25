@@ -5,106 +5,97 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <!-- google fonts-->
+    <link href="https://fonts.googleapis.com/css?family=Amatic+SC|Open+Sans+Condensed:300&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+    <!-- jquery -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+    <!-- bootstrap-->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+    <!-- firebase-->
+    <script src="https://www.gstatic.com/firebasejs/6.0.4/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/6.0.4/firebase-database.js"></script>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="../Project-1/assets/css/journal.css">
+    <!-- js -->
+    <script type="text/javascript" src="assets/javascript/journal.js"></script>
+
+    <title>The Bucket</title>
 </head>
 
 <body>
-    <!DOCTYPE html>
-    <html lang="en">
-
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta http-equiv="X-UA-Compatible" content="ie=edge">
-        <!-- google fonts-->
-        <link href="https://fonts.googleapis.com/css?family=Amatic+SC|Open+Sans+Condensed:300&display=swap"
-            rel="stylesheet">
-
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-        <script src="https://www.amcharts.com/lib/4/core.js"></script>
-        <script src="https://www.amcharts.com/lib/4/maps.js"></script>
-        <script src="https://www.amcharts.com/lib/4/geodata/worldLow.js"></script>
-        <script src="https://www.amcharts.com/lib/4/themes/animated.js"></script>
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
-            integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-        <link rel="stylesheet" href="../Project-1/assets/css/style.css">
-        <link rel="stylesheet" href="../Project-1/assets/css/journal.css">
-
-        <script type="text/javascript" src="assets/javascript/app.js"></script>
-        <title>The Bucket</title>
-    </head>
-
-    <body>
-        <nav>
-            <div class="nav-wrapper">
-                <a href="#!" class="brand-logo"> The Bucket </a>
-                <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
-                <ul class="right hide-on-med-and-down">
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="sass.html">Log-in</a></li>
-                    <li><a href="diary.html">My Journal</a></li>
-                </ul>
-            </div>
-        </nav>
-
-        <ul class="sidenav" id="mobile-demo">
-            <li><a href="index.html">Home</a></li>
-            <li><a href="sass.html">Log-in</a></li>
-            <li><a href="diary.html">My Journal</a></li>
-        </ul>
-
-        <div class="container">
-            <h1> My Journal</h1>
-
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">Place Visited</th>
-                        <th scope="col">Destination</th>
-                        <th scope="col">Date</th>
-                        <th scope="col">Comments</th>
-                        <th scope="col">Pictures</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <th scope="row">1</th>
-                        <td id="place">Mark</td>
-                        <td id="destination">BLah</td>
-                        <td id="date">Otto</td>
-                        <td id="Picture">@mdo</td>
-                        <td></td>
-                    </tr>
-                </tbody>
-            </table>
-            <br>
-            <form>
-                <div class="form-group">
-                    <label for="place-visited-input">Place Visited</label>
-                    <input type="text" class="form-control" id="place-input" placeholder="Place Café">
-                </div>
-                <div class="form-group">
-                    <label for="destination-input">Destination</label>
-                    <input type="text" class="form-control" id="destination-input" placeholder="City, State/ Country">
-                </div>
-                <div class="form-group">
-                    <label for="date-visited-input">Date</label>
-                    <input type="text" class="form-control" id="date-input" placeholder="DD/MM/YYYY">
-                </div>
-                <div class="form-group">
-                    <label for="comments-input">Comments</label>
-                    <input type="text" class="form-control" id="comments-input" placeholder="I loved Place Café">
-                </div>
-                <button class="btn btn-primary" type="submit">Add me to your journal!</button>
-
-            </form>
+    <nav>
+        <div class="nav-wrapper">
+            <a href="#!" class="brand-logo"> The Bucket </a>
+            <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+            <ul class="right hide-on-med-and-down">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="sass.html">Log-in</a></li>
+                <li><a href="diary.html">My Journal</a></li>
+            </ul>
         </div>
+    </nav>
+
+    <ul class="sidenav" id="mobile-demo">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="sass.html">Log-in</a></li>
+        <li><a href="diary.html">My Journal</a></li>
+    </ul>
+
+    <div class="container">
+        <h1> My Journal</h1>
+
+        <table class="table" id="train-table">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Place Visited</th>
+                    <th scope="col">Destination</th>
+                    <th scope="col">Date</th>
+                    <th scope="col">Comments</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th scope="row"></th>
+                    <td id="place"></td>
+                    <td id="destination"></td>
+                    <td id="date"></td>
+                    <td id="comments"></td>
+                    <td></td>
+                </tr>
+            </tbody>
+        </table>
+        <br>
+        <!-- Add to your journal-->
+        <form>
+            <div class="form-group">
+                <label for="place visited">PLace Visited</label>
+                <input type="text" class="form-control" id="place-input" placeholder="Place Café">
+            </div>
+            <div class="form-group">
+                <label for="place visited">Destination</label>
+                <input type="text" class="form-control" id="dest-input" placeholder="City, State/ Country">
+            </div>
+            <div class="form-group">
+                <label for="place visited">Date</label>
+                <input type="text" class="form-control" id="date-input" placeholder="MM/DD/YYYY">
+            </div>
+            <div class="form-group">
+                <label for="place visited">Comments</label>
+                <input type="text" class="form-control" id="comments-input" placeholder="I loved Place Café">
+            </div>
+            <button class="btn btn-primary" type="submit" id="addMe">Add me to your journal!</button>
+        </form>
+    </div>
 
 
-    </body>
-
-    </html>
 </body>
 
 </html>
