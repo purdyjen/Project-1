@@ -1,3 +1,9 @@
+
+html {
+   position: relative;
+   height: 100%;
+}
+
 body{
    font-family: 'Amatic SC', cursive;
    background-image: url(../images/indexbg.jpg);
@@ -169,6 +175,7 @@ body{
  }
     
 
+<<<<<<< HEAD
 #searchbox {
    margin-left: 100px;
    font-family: 'Amatic SC', cursive;
@@ -182,3 +189,24 @@ body{
    font-size: 30px;
   
 }
+=======
+.footer {
+  position: relative;
+  
+  bottom: 0;
+  width: 100%;
+  height: 60px;
+  background-color:  #006699;
+  color: white;
+  text-align: center;
+}
+
+#container {
+   min-height: 100vh;
+   overflow: hidden;
+   display: block;
+   position: relative;
+   padding-bottom: 60px;
+}
+
+>>>>>>> a3a2a188bacb18669d6600f14ec54d8ab4e494bd

@@ -4,26 +4,31 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge"> 
-<!-- google fonts-->
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <!-- google fonts-->
   <link href="https://fonts.googleapis.com/css?family=Amatic+SC|Open+Sans+Condensed:300&display=swap" rel="stylesheet">
 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-<!--favicon -->
-<link rel="shortcut icon" type="image/png" href="../Project-1/assets/images/pin.png"/>
+  <!--favicon -->
+  <link rel="shortcut icon" type="image/png" href="../Project-1/assets/images/pin.png" />
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
- <!-- bootstrap-->
+  <!-- bootstrap-->
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
-<!-- firebase-->
+  <!-- firebase-->
   <script src="https://www.gstatic.com/firebasejs/6.0.4/firebase-app.js"></script>
   <script src="https://www.gstatic.com/firebasejs/6.0.4/firebase-database.js"></script>
-<!-- map -->
+  <!-- map -->
   <script src="https://www.amcharts.com/lib/4/core.js"></script>
   <script src="https://www.amcharts.com/lib/4/maps.js"></script>
   <script src="https://www.amcharts.com/lib/4/geodata/worldLow.js"></script>
   <script src="https://www.amcharts.com/lib/4/themes/animated.js"></script>
+
+  <!-- Moment.js Reference -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js"></script>
+
+  <!-- internal style/script -->
   <link rel="stylesheet" href="../Project-1/assets/css/style.css">
   <script type="text/javascript" src="assets/javascript/app.js"></script>
 
@@ -41,13 +46,19 @@
       <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
       <ul class="right hide-on-med-and-down">
         <li><a href="index.html">Home</a></li>
+<<<<<<< HEAD
         <li><a href="diary.html">My Journal</a></li>   
+=======
+        <li><a href="sass.html">Log-in</a></li>
+        <li><a href="diary.html">My Journal</a></li>
+>>>>>>> a3a2a188bacb18669d6600f14ec54d8ab4e494bd
       </ul>
     </div>
   </nav>
 
   <ul class="sidenav" id="mobile-demo">
     <li><a href="index.html">Home</a></li>
+<<<<<<< HEAD
     <li><a href="diary.html">My Journal</a></li>   
   </ul>
 
@@ -59,6 +70,33 @@
   
     <div id="chartdiv"></div>
  
+=======
+    <li><a href="sass.html">Log-in</a></li>
+    <li><a href="diary.html">My Journal</a></li>
+  </ul>
+
+  <div class="container">
+
+    <input type="text" id="link-box">
+    <input type="button" id="search-button" value="Search">
+
+
+
+
+    <h1> The Bucket</h1>
+
+    <!-- this holds the map -->
+
+    <div id="chartdiv"></div>
+
+  </div>
+
+  <div class="footer">
+    <p>Footer</p>
+  </div>
+
+
+>>>>>>> a3a2a188bacb18669d6600f14ec54d8ab4e494bd
 
 <div id="searchbox">
   <input type="text" id="link-box" placeholder="Search Location">
