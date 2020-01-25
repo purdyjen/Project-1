@@ -5,23 +5,28 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <!-- google fonts-->
+
+  <!--Materialize-->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link type="text/css" rel="stylesheet" href="assets/css/materialize.min.css" media="screen,projection" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!--Our CSS-->
+  <link rel="stylesheet" href="assets/css/style.css">
+
+  <!--Google Fonts-->
   <link href="https://fonts.googleapis.com/css?family=Amatic+SC|Open+Sans+Condensed:300&display=swap" rel="stylesheet">
 
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
-
+  <!--Firebase-->
   <script src="https://www.gstatic.com/firebasejs/6.0.4/firebase-app.js"></script>
   <script src="https://www.gstatic.com/firebasejs/6.0.4/firebase-database.js"></script>
 
+  <!--Amcharts-->
   <script src="https://www.amcharts.com/lib/4/core.js"></script>
   <script src="https://www.amcharts.com/lib/4/maps.js"></script>
   <script src="https://www.amcharts.com/lib/4/geodata/worldLow.js"></script>
   <script src="https://www.amcharts.com/lib/4/themes/animated.js"></script>
-  <link rel="stylesheet" href="../Project-1/assets/css/style.css">
   <script type="text/javascript" src="assets/javascript/app.js"></script>
 
 
@@ -37,23 +42,32 @@
       <ul class="right hide-on-med-and-down">
         <li><a href="index.html">Home</a></li>
         <li><a href="sass.html">Log-in</a></li>
-
-        <li><a href="diary.html">My Journal</a></li>   
-
+        <li><a href="diary.html">My Journal</a></li>
+        <li>
+          <form>
+            <div class="input-field">
+              <input id="search search-button" type="search" required>
+              <label class="label-icon" for="search"><i class="material-icons">search</i></label>
+              <i class="material-icons">close</i>
+            </div>
+          </form>
+        </li>
       </ul>
     </div>
   </nav>
 
+
+
   <ul class="sidenav" id="mobile-demo">
     <li><a href="index.html">Home</a></li>
     <li><a href="sass.html">Log-in</a></li>
-    <li><a href="diary.html">My Journal</a></li>   
+    <li><a href="diary.html">My Journal</a></li>
   </ul>
 
 
-  <input type="text" id="link-box">
-  <input type="button" id="search-button" value="Search">
-    
+  <!--   <input type="text" id="link-box">
+  <input type="button" id="search-button" value="Search"> -->
+
 
 
 
@@ -64,9 +78,7 @@
     <div id="chartdiv"></div>
   </div>
 
-  
-
-
+  <script type="text/javascript" src="assets/javascript/materialize.min.js"></script>
 
 </body>
 

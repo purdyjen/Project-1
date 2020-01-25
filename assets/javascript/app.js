@@ -76,13 +76,13 @@ am4core.ready(function () {
 	var hs = polygonTemplate.states.create("hover");
 	hs.properties.fill = chart.colors.getIndex(0);
 
-	// POPUP ON CLICK  
-	polygonTemplate.events.on("hit", function (ev) {
+	function doChartPopup(ev) {
+
 		chart.closeAllPopups();
 		var popup = chart.openPopup(ev.target.dataItem.dataContext.name);
 		popup.left = ev.svgPoint.x + 15;
 		popup.top = ev.svgPoint.y + 15;
-		$(".ampopup-header").hide();
+		// $(".ampopup-header").hide();
 	
 	
 
@@ -111,11 +111,15 @@ am4core.ready(function () {
 			}
 		}
 		// geoDB ajax call
-		$.ajax(geoDBsettings).done(function (response) {
-			console.log(response);
-		});
+		// $.ajax(geoDBsettings).done(function (response) {
+		// 	console.log(response);
+		// });
+	}
 
-});
+	// POPUP ON CLICK  
+	polygonTemplate.events.on("hit", function (ev) {
+		doChartPopup(ev);
+	});
 
 
 
@@ -123,9 +127,9 @@ am4core.ready(function () {
 	var inputTextValue = ("link-box").value;
 
 
-	document.getElementById("search-button").onclick = function () {
+/*	document.getElementById("search-button").onclick = function () {
 		searchPlaces();
-	}
+	} */
 	
 	function searchPlaces() {
 		
