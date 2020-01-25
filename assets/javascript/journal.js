@@ -17,33 +17,67 @@
     var dest = "";
     var date = "";
     var comment = "";
+    var entryNum = 0;
 
     // capture button click
     $("#addMe").on("click", function (event) {
-      event.preventDefault();
+        event.preventDefault();
 
-      place = $("#place-input").val().trim();
-      dest = $("#dest-input").val().trim();
-      date = $("#date-input").val().trim();
-      comment = $("#comments-input").val().trim();
-      console.log(place)
+        place = $("#place-input").val().trim();
+        dest = $("#dest-input").val().trim();
+        date = $("#date-input").val().trim();
+        comment = $("#comments-input").val().trim();
+        console.log(place)
 
-      // push to firebase
-      dataRef.ref().push({
+        var newDiary = {
+          place: place,
+          dest: dest,
+          date: date,
+          comment: comment,
+          dateAdded: firebase.database.ServerValue.TIMESTAMP
 
-        place: place,
-        dest: dest,
-        date: date,
-        comment: comment,
-        dateAdded: firebase.database.ServerValue.TIMESTAMP
-      });
+        }
+        // push to firebase
+        dataRef.ref().push(newDiary);
+
+        // Clears all of the text-boxes
+        $("#place-input").val("");
+        $("#dest-input").val("");
+        $("#date-input").val("");
+        $("#comment-input").val("");
+
+
+      }),
 
       // Firebase watcher
       dataRef.ref().on("child_added", function (childSnapshot) {
-        console.log(childSnapshot.val())
+        // view the object
+        console.log(childSnapshot.val());
+        entryNum++;
+
+        //store the Firebase data as new variables
+        var diaryPlace = childSnapshot.val().place;
+        var diaryDest = childSnapshot.val().dest;
+        var diaryDate = childSnapshot.val().date;
+        var diaryComment = childSnapshot.val().comment;
 
 
+
+
+        // Prettify the employee start
+        var datePretty = moment.unix(diaryDate).format("MM/DD/YYYY");
+
+        // Create a new row for the table
+        var newRow = $("<tr>").append(
+          $("<td>").text(entryNum),
+          $("<td>").text(diaryPlace),
+          $("<td>").text(diaryDest),
+          $("<td>").text(diaryDate),
+          $("<td>").text(diaryComment)
+        );
+
+        // Add the row to the table
+        $("#diary-table > tbody").prepend(newRow);
       });
-    });
 
-  })
+  });
