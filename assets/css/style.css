@@ -100,7 +100,10 @@ html {
 
   h1 {
       text-align: center;
-      /* font-family: 'Amatic SC', cursive; */
+
+      font-family: 'Amatic SC', cursive;
+
+
   }
 
   .ampopup {
@@ -152,11 +155,13 @@ html {
    cursor: pointer
  }
 
+
 #link-box {
     width: 200px;
  }
     
 
+<<<<<<< HEAD
 
 .footer {
   position: relative;
@@ -176,3 +181,5 @@ html {
    position: relative;
    padding-bottom: 60px;
 }
+=======
+>>>>>>> 341dc9642e01ccde257807cffe1a34ba04879e10
