@@ -1,8 +1,12 @@
+
 html {
    position: relative;
    height: 100%;
 }
 
+body{
+   font-family: 'Amatic SC', cursive;
+}
 
 #chartdiv {
     width: 100%;
@@ -161,8 +165,6 @@ html {
  }
     
 
-<<<<<<< HEAD
-
 .footer {
   position: relative;
   
@@ -181,5 +183,4 @@ html {
    position: relative;
    padding-bottom: 60px;
 }
-=======
->>>>>>> 341dc9642e01ccde257807cffe1a34ba04879e10
+
