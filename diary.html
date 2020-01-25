@@ -47,16 +47,18 @@
             <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
             <ul class="right hide-on-med-and-down">
                 <li><a href="index.html">Home</a></li>
-                <li><a href="diary.html">My Journal</a></li>
+                <li><a href="diary.html" data-toggle="modal" data-target="#exampleModal">My Journal</a></li>
             </ul>
         </div>
     </nav>
 
     <ul class="sidenav" id="mobile-demo">
         <li><a href="index.html">Home</a></li>
-        <li><a href="diary.html">My Journal</a></li>
+        <li><a href="diary.html" data-toggle="modal" data-target="#exampleModal">My Journal</a></li>
     </ul>
 
+
+    
     <div class="container">
         <h1> My Journal</h1>
 
@@ -100,17 +102,11 @@
                 <label for="place visited">Comments</label>
                 <input type="text" class="form-control" id="comments-input" placeholder="I loved Place Café">
             </div>
-            <button class="btn btn-primary" type="submit" id="addMe">Add me to your journal!</button>
+            <button class="btn btn-primary" type="submit" id="addMe" data-toggle="modal" data-target="#exampleModal">Add me to your journal!</button>
         </form>
     </div>
 
-    <!-- Button trigger modal: we might want to make it so when they click journal
-    they see the modal right away -->
-    <!-- Button trigger modal -->
-    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-        Log-In
-    </button>
-
+   
     <!-- Modal -->
     <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
@@ -144,7 +140,7 @@
             </div>
         </div>
     </div>
-
+<!-- footer -->
     <footer class="footer">
         <div class="footer-copyright">
             <div id="copy">
