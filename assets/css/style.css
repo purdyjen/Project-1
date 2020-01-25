@@ -6,6 +6,7 @@ html {
 
 body{
    font-family: 'Amatic SC', cursive;
+   background-image: url(../images/indexbg.jpg);
 }
 
 #chartdiv {
@@ -161,9 +162,33 @@ body{
 
 
 #link-box {
-    width: 200px;
+   width: 15%;
+   box-sizing: border-box;
+   border: 2px solid #ccc;
+   border-radius: 4px;
+   font-size: 16px;
+   background-color: white;
+   background-image: url('searchicon.png');
+   background-position: 10px 10px; 
+   background-repeat: no-repeat;
+   padding: 12px 20px 12px 40px;
  }
     
+
+
+#searchbox {
+   margin-left: 100px;
+   font-family: 'Amatic SC', cursive;
+   
+}
+
+#search-button{
+   border-radius: 15px;
+   background: rgb(106, 177, 153);
+   font-family: 'Amatic SC', cursive;
+   font-size: 30px;
+  
+}
 
 .footer {
   position: relative;
@@ -183,4 +208,5 @@ body{
    position: relative;
    padding-bottom: 60px;
 }
+
 
