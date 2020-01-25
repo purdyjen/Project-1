@@ -35,9 +35,6 @@
 // 	console.log(response);
 // }); //imgur closing tag
 
-//GeoDB Cities API
-
-
 
 
 
@@ -83,19 +80,6 @@ am4core.ready(function () {
 		popup.left = ev.svgPoint.x + 15;
 		popup.top = ev.svgPoint.y + 15;
 		$(".ampopup-header").hide();
-	
-	
-
-	// ADD DIVS FOR PICS AND INFO
-
-	// THIS IS WHERE YOU PUT EVENTS TIED TO POPUP
-	// chart.modal.events.on("opened", function(ev) {
-	// 	console.log(ev);
-	//   });
-
-	// SEARCH FUNCTION
-
-
 
 		// grabs the country id for geoDB api 
 		countryid = ev.target.dataItem.dataContext.id
@@ -115,7 +99,20 @@ am4core.ready(function () {
 			console.log(response);
 		});
 
-});
+
+		// ADD DIVS FOR PICS AND INFO
+
+		// THIS IS WHERE YOU PUT EVENTS TIED TO POPUP
+		// chart.modal.events.on("opened", function(ev) {
+		// 	console.log(ev);
+		//   });
+
+		// SEARCH FUNCTION
+
+
+
+
+	});
 
 
 
@@ -126,33 +123,17 @@ am4core.ready(function () {
 	document.getElementById("search-button").onclick = function () {
 		searchPlaces();
 	}
-	
+
 	function searchPlaces() {
-		
-		for
-			(i = 0; i < polygonSeries.length; i++); {
+
+		for (i = 0; i < polygonSeries.length; i++); {
 
 			if (inputTextValue === polygonSeries);
-			 chart.openPopup();
-			 $(".ampopup-header").hide();
+			chart.openPopup();
+			$(".ampopup-header").hide();
+		}
+
 	}
-	
-	}
-
-
-
-
-		// When this happens, the “active” class is appended to the pop-up classes, thus changing
-		//  the pop-up’s visibility to “visible.” In other words, the pop-up will appear.
-
-		// This second statement removes the “active” class when the “Close” button is clicked.
-
-		
-
-
-	
-
-	
 
 	// Create hover state and set alternative fill color
 	var hs = polygonTemplate.states.create("hover");
@@ -258,7 +239,10 @@ am4core.ready(function () {
 
 			// reposition the element accoridng to coordinates
 
-			var xy = chart.geoPointToSVG({ longitude: image.longitude, latitude: image.latitude });
+			var xy = chart.geoPointToSVG({
+				longitude: image.longitude,
+				latitude: image.latitude
+			});
 
 			image.dummyData.externalElement.style.top = xy.y + 'px';
 			image.dummyData.externalElement.style.left = xy.x + 'px';
@@ -305,4 +289,3 @@ am4core.ready(function () {
 
 
 }); // end am4core.ready()
-

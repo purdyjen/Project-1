@@ -1,56 +1,49 @@
+  $(document).ready(function () {
 
-var config = {
-
-};
-
-firebase.initializeApp(config);
-
-var database = firebase.database();
-
-$("#addMe").on("click", function(event) {
-    event.preventDefault();
-  
-    var empName = $("#place-input").val().trim();
-    var empDest = $("#dest-input").val().trim();
-    var empDate = moment($("#date-input").val().trim(), "MM/DD/YYYY").format("X");
-    var empCom = $("#comments-input").val().trim();
-  
-    var newEmp = {
-      Train: empName,
-      Destination: empDest,
-      start: empDate,
-      rate: empCom
+    // Initialize firebase
+    const config = {
+      apiKey: "AIzaSyDgVXzyxHgZtoc_mcbqu-qRr_bdPNFJx3I",
+      authDomain: "group-b-project-one.firebaseapp.com",
+      databaseURL: "https://group-b-project-one.firebaseio.com",
+      projectId: "group-b-project-one",
+      storageBucket: "",
     };
-  
-    database.ref().push(newEmp);
 
-    $("#employee-name-input").val("");
-    $("#role-input").val("");
-    $("#start-input").val("");
-    $("#rate-input").val("");
-  });
-  
-  // 3. Create Firebase event for adding employee to the database and a row in the html when a user adds an entry
-  database.ref().on("child_added", function(childSnapshot) {
-    console.log(childSnapshot.val());
-  
-    // Store everything into a variable.
-    var empName = childSnapshot.val().name;
-    var empDest = childSnapshot.val().role;
-    var empDate = childSnapshot.val().start;
-    var empCom = childSnapshot.val().rate;
-  
-    // Prettify the employee start
-    var empDatePretty = moment.unix(empDate).format("MM/DD/YYYY");
-  
-    // Create the new row
-    var newRow = $("<tr>").append(
-      $("#place").text(empName),
-      $("#destination").text(empDest),
-      $("#date").text(empDatePretty),
-      $("#comments").text(empComm),
-    );
-  
-    // Append the new row to the table
-    $("#train-table > tbody").append(newRow);
-  });
+    firebase.initializeApp(config);
+    var dataRef = firebase.database();
+
+    // set initial values
+    var place = "";
+    var dest = "";
+    var date = "";
+    var comment = "";
+
+    // capture button click
+    $("#addMe").on("click", function (event) {
+      event.preventDefault();
+
+      place = $("#place-input").val().trim();
+      dest = $("#dest-input").val().trim();
+      date = $("#date-input").val().trim();
+      comment = $("#comments-input").val().trim();
+      console.log(place)
+
+      // push to firebase
+      dataRef.ref().push({
+
+        place: place,
+        dest: dest,
+        date: date,
+        comment: comment,
+        dateAdded: firebase.database.ServerValue.TIMESTAMP
+      });
+
+      // Firebase watcher
+      dataRef.ref().on("child_added", function (childSnapshot) {
+        console.log(childSnapshot.val())
+
+
+      });
+    });
+
+  })
