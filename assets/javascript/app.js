@@ -44,7 +44,6 @@
 am4core.ready(function () {
 
 
-
 	// Themes begin
 	am4core.useTheme(am4themes_animated);
 	// Themes end
@@ -69,21 +68,34 @@ am4core.ready(function () {
 
 	// Configure series
 	var polygonTemplate = polygonSeries.mapPolygons.template;
+
+	polygonTemplate.tooltipText = "{name}";
+	polygonTemplate.fill = chart.colors.getIndex(0).lighten(0.5);
+
+	// Create hover state and set alternative fill color
+	var hs = polygonTemplate.states.create("hover");
+	hs.properties.fill = chart.colors.getIndex(0);
+
+	// POPUP ON CLICK  
 	polygonTemplate.events.on("hit", function (ev) {
+		chart.closeAllPopups();
+		var popup = chart.openPopup(ev.target.dataItem.dataContext.name);
+		popup.left = ev.svgPoint.x + 15;
+		popup.top = ev.svgPoint.y + 15;
+		$(".ampopup-header").hide();
+	
+	
 
-		$("#chartdiv").on("click", function () {
-			$(".popup, .popup-content").addClass("active");
-		});
+	// ADD DIVS FOR PICS AND INFO
 
-		// place name
-		$('#title').append(ev.target.dataItem.dataContext.name);
+	// THIS IS WHERE YOU PUT EVENTS TIED TO POPUP
+	// chart.modal.events.on("opened", function(ev) {
+	// 	console.log(ev);
+	//   });
 
-		//  place pics
-		$('#placepics').append(ev.target.dataItem.dataContext.name);
+	// SEARCH FUNCTION
 
-		//  place info
 
-		$('#placeinfo').append(ev.target.dataItem.dataContext.name);
 
 		// grabs the country id for geoDB api 
 		countryid = ev.target.dataItem.dataContext.id
@@ -103,6 +115,29 @@ am4core.ready(function () {
 			console.log(response);
 		});
 
+});
+
+
+
+
+	var inputTextValue = ("link-box").value;
+
+
+	document.getElementById("search-button").onclick = function () {
+		searchPlaces();
+	}
+	
+	function searchPlaces() {
+		
+		for
+			(i = 0; i < polygonSeries.length; i++); {
+
+			if (inputTextValue === polygonSeries);
+			 chart.openPopup();
+			 $(".ampopup-header").hide();
+	}
+	
+	}
 
 
 
@@ -112,22 +147,17 @@ am4core.ready(function () {
 
 		// This second statement removes the “active” class when the “Close” button is clicked.
 
-		$(".close, .popup").on("click", function () {
-			$(".popup, .popup-content").removeClass("active");
-		});
+		
 
 
-		// zoom to an object
-		ev.target.series.chart.zoomToMapObject(ev.target);
+	
 
-		// get object info
-		console.log(countryid);
-
-	});
+	
 
 	// Create hover state and set alternative fill color
 	var hs = polygonTemplate.states.create("hover");
 	hs.properties.fill = chart.colors.getIndex(0);
+
 
 	// Add image series
 	var imageSeries = chart.series.push(new am4maps.MapImageSeries());
@@ -227,10 +257,9 @@ am4core.ready(function () {
 			}
 
 			// reposition the element accoridng to coordinates
-			var xy = chart.geoPointToSVG({
-				longitude: image.longitude,
-				latitude: image.latitude
-			});
+
+			var xy = chart.geoPointToSVG({ longitude: image.longitude, latitude: image.latitude });
+
 			image.dummyData.externalElement.style.top = xy.y + 'px';
 			image.dummyData.externalElement.style.left = xy.x + 'px';
 		});
@@ -239,6 +268,7 @@ am4core.ready(function () {
 
 	// this function creates and returns a new marker element
 	function createCustomMarker(image) {
+
 
 		var chart = image.dataItem.component.chart;
 
@@ -266,19 +296,13 @@ am4core.ready(function () {
 		pulse.className = 'pulse';
 		holder.appendChild(pulse);
 
+
 		// append the marker to the map container
 		chart.svgContainer.htmlElement.appendChild(holder);
 
 		return holder;
 	}
 
-	function placeClick() {
 
-		$('#shape-rendering').click(function () {
+}); // end am4core.ready()
 
-			console.log(placeClick)
-		})
-	};
-
-
-});
