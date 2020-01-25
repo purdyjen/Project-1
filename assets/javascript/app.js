@@ -35,27 +35,14 @@
 // 	console.log(response);
 // }); //imgur closing tag
 
-// //GeoDB Cities API
-// var settings = {
-// 	"async": true,
-// 	"crossDomain": true,
-// 	"url": "https://wft-geo-db.p.rapidapi.com/v1/locale/locales",
-// 	"method": "GET",
-// 	"headers": {
-// 		"x-rapidapi-host": "wft-geo-db.p.rapidapi.com",
-// 		"x-rapidapi-key": "67e5b82144msh17b9c9ba44c04e7p1ef9f8jsn8f0e1f2fd82a"
-// 	}
-// }
+//GeoDB Cities API
 
-// $.ajax(settings).done(function (response) {
-// 	console.log(response);
-// }); //GeoDB Cities closing tag
 
-// }); //doc ready closing tag
 
 
 
 am4core.ready(function () {
+
 
 	// Themes begin
 	am4core.useTheme(am4themes_animated);
@@ -81,6 +68,7 @@ am4core.ready(function () {
 
 	// Configure series
 	var polygonTemplate = polygonSeries.mapPolygons.template;
+
 	polygonTemplate.tooltipText = "{name}";
 	polygonTemplate.fill = chart.colors.getIndex(0).lighten(0.5);
 
@@ -95,8 +83,7 @@ am4core.ready(function () {
 		popup.left = ev.svgPoint.x + 15;
 		popup.top = ev.svgPoint.y + 15;
 		$(".ampopup-header").hide();
-	});
-
+	
 	
 
 	// ADD DIVS FOR PICS AND INFO
@@ -108,7 +95,33 @@ am4core.ready(function () {
 
 	// SEARCH FUNCTION
 
+
+
+		// grabs the country id for geoDB api 
+		countryid = ev.target.dataItem.dataContext.id
+
+		var geoDBsettings = {
+			"async": true,
+			"crossDomain": true,
+			"url": "https://wft-geo-db.p.rapidapi.com/v1/geo/countries/" + countryid,
+			"method": "GET",
+			"headers": {
+				"x-rapidapi-host": "wft-geo-db.p.rapidapi.com",
+				"x-rapidapi-key": "8c82e4dd37msh31e61bbc05c60afp12c20fjsn273f40e54380"
+			}
+		}
+		// geoDB ajax call
+		$.ajax(geoDBsettings).done(function (response) {
+			console.log(response);
+		});
+
+});
+
+
+
+
 	var inputTextValue = ("link-box").value;
+
 
 	document.getElementById("search-button").onclick = function () {
 		searchPlaces();
@@ -127,6 +140,23 @@ am4core.ready(function () {
 	}
 
 
+
+
+		// When this happens, the “active” class is appended to the pop-up classes, thus changing
+		//  the pop-up’s visibility to “visible.” In other words, the pop-up will appear.
+
+		// This second statement removes the “active” class when the “Close” button is clicked.
+
+		
+
+
+	
+
+	
+
+	// Create hover state and set alternative fill color
+	var hs = polygonTemplate.states.create("hover");
+	hs.properties.fill = chart.colors.getIndex(0);
 
 
 	// Add image series
@@ -227,7 +257,9 @@ am4core.ready(function () {
 			}
 
 			// reposition the element accoridng to coordinates
+
 			var xy = chart.geoPointToSVG({ longitude: image.longitude, latitude: image.latitude });
+
 			image.dummyData.externalElement.style.top = xy.y + 'px';
 			image.dummyData.externalElement.style.left = xy.x + 'px';
 		});
@@ -236,6 +268,7 @@ am4core.ready(function () {
 
 	// this function creates and returns a new marker element
 	function createCustomMarker(image) {
+
 
 		var chart = image.dataItem.component.chart;
 
@@ -263,10 +296,13 @@ am4core.ready(function () {
 		pulse.className = 'pulse';
 		holder.appendChild(pulse);
 
+
 		// append the marker to the map container
 		chart.svgContainer.htmlElement.appendChild(holder);
 
 		return holder;
 	}
 
+
 }); // end am4core.ready()
+

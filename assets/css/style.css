@@ -94,7 +94,10 @@
 
   h1 {
       text-align: center;
-      /* font-family: 'Amatic SC', cursive; */
+
+      font-family: 'Amatic SC', cursive;
+
+
   }
 
   .ampopup {
@@ -146,7 +149,9 @@
    cursor: pointer
  }
 
+
 #link-box {
     width: 200px;
  }
     
+
