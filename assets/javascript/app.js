@@ -83,7 +83,7 @@ am4core.ready(function () {
 
 		// grabs the country id for geoDB api 
 		countryid = ev.target.dataItem.dataContext.id
-
+		// settings to pass to ajax call
 		var geoDBsettings = {
 			"async": true,
 			"crossDomain": true,
@@ -97,6 +97,8 @@ am4core.ready(function () {
 		// geoDB ajax call
 		$.ajax(geoDBsettings).done(function (response) {
 			console.log(response);
+			var numRegions = response.data.numRegions
+			console.log(numRegions)
 		});
 
 
