@@ -106,6 +106,7 @@ am4core.ready(function () {
 			var regionInfo = $("<p>").text("Number of regions: " + numRegions);
 			var currencyInfo = $("<p>").text("Currency: " + currency)
 			var countryFlag = $("<img>").attr("src", flag);
+			countryFlag.addClass("flag-img");
 
 			// appending tags to the overall div
 			var dataDump = $("<div>");
