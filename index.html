@@ -14,9 +14,17 @@
   <!-- materialize-->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <!-- Compiled and minified CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+  <!-- Compiled and minified JavaScript -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
   <!-- bootstrap-->
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
-  
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
   <!-- firebase-->
   <script src="https://www.gstatic.com/firebasejs/6.0.4/firebase-app.js"></script>
   <script src="https://www.gstatic.com/firebasejs/6.0.4/firebase-database.js"></script>
@@ -39,22 +47,18 @@
 <body>
 
   <!-- nav bar-->
-  <nav>
-    <div class="nav-wrapper">
-      <a href="index.html" class="brand-logo"> The Bucket </a>
-      <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
-      <ul class="right hide-on-med-and-down">
-        <li><a href="index.html">Home</a></li>
-        <li><a href="diary.html">My Journal</a></li>
-
-      </ul>
+  <nav class="navbar navbar-expand-lg navbar-dark" id="nav">
+    <a class="navbar-brand" href="index.html">The Bucket</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+      <div class="navbar-nav">
+        <a class="nav-item nav-link active" href="index.html">Home <span class="sr-only">(current)</span></a>
+        <a class="nav-item nav-link active" href="diary.html">My Journal</a>
+        </div>
     </div>
   </nav>
-
-  <ul class="sidenav" id="mobile-demo">
-    <li><a href="index.html">Home</a></li>
-    <li><a href="diary.html">My Journal</a></li>
-  </ul>
 
   <!-- start of content-->
   <div class="container">

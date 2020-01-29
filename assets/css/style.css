@@ -237,3 +237,20 @@ h1 {
    width: 5em;
    height: 3em;
 }
+
+nav {
+   background-color: #ec6d6dfa;
+   color: white;
+   font-size: 20px;
+}
+
+.navbar-brand {
+   text-shadow: 2px 2px 8px rgb(70, 69, 69);
+      font-size: 40px;
+  }
+  
+  .navbar-nav{
+      background-color:  #ec6d6dfa;
+      text-align: center;
+      line-height: 30px;       
+}
