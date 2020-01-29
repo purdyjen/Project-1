@@ -83,17 +83,17 @@ am4core.ready(function () {
 		popup.left = ev.svgPoint.x + 15;
 		popup.top = ev.svgPoint.y + 15;
 		// $(".ampopup-header").hide();
-	
-	
 
-	// ADD DIVS FOR PICS AND INFO
 
-	// THIS IS WHERE YOU PUT EVENTS TIED TO POPUP
-	// chart.modal.events.on("opened", function(ev) {
-	// 	console.log(ev);
-	//   });
 
-	// SEARCH FUNCTION
+		// ADD DIVS FOR PICS AND INFO
+
+		// THIS IS WHERE YOU PUT EVENTS TIED TO POPUP
+		// chart.modal.events.on("opened", function(ev) {
+		// 	console.log(ev);
+		//   });
+
+		// SEARCH FUNCTION
 
 
 
@@ -116,47 +116,39 @@ am4core.ready(function () {
 		// });
 	}
 
-	// POPUP ON CLICK  
-	polygonTemplate.events.on("hit", function (ev) {
-		doChartPopup(ev);
-	});
-
-
-
 
 	var inputTextValue = ("link-box").value;
 
 
-/*	document.getElementById("search-button").onclick = function () {
-		searchPlaces();
-	} */
-	
+	/*	document.getElementById("search-button").onclick = function () {
+			searchPlaces();
+		} */
+
 	function searchPlaces() {
-		
-		for
-			(i = 0; i < polygonSeries.length; i++); {
+
+		for (i = 0; i < polygonSeries.length; i++); {
 
 			if (inputTextValue === polygonSeries);
-			 chart.openPopup();
-			 $(".ampopup-header").hide();
+			chart.openPopup();
+			$(".ampopup-header").hide();
+		}
+
 	}
-	
-	}
 
 
 
 
-		// When this happens, the “active” class is appended to the pop-up classes, thus changing
-		//  the pop-up’s visibility to “visible.” In other words, the pop-up will appear.
+	// When this happens, the “active” class is appended to the pop-up classes, thus changing
+	//  the pop-up’s visibility to “visible.” In other words, the pop-up will appear.
 
-		// This second statement removes the “active” class when the “Close” button is clicked.
-
-		
+	// This second statement removes the “active” class when the “Close” button is clicked.
 
 
-	
 
-	
+
+
+
+
 
 	// Create hover state and set alternative fill color
 	var hs = polygonTemplate.states.create("hover");
@@ -262,7 +254,10 @@ am4core.ready(function () {
 
 			// reposition the element accoridng to coordinates
 
-			var xy = chart.geoPointToSVG({ longitude: image.longitude, latitude: image.latitude });
+			var xy = chart.geoPointToSVG({
+				longitude: image.longitude,
+				latitude: image.latitude
+			});
 
 			image.dummyData.externalElement.style.top = xy.y + 'px';
 			image.dummyData.externalElement.style.left = xy.x + 'px';
@@ -308,5 +303,19 @@ am4core.ready(function () {
 	}
 
 
-}); // end am4core.ready()
+	// POPUP ON CLICK  
+	polygonTemplate.events.on("hit", function (ev) {
+		doChartPopup(ev);
+	});
 
+	// Popup on click icon
+	$("#map-marker").on("click", function() {
+		console.log("clicked!");
+		// doChartPopup(ev);
+	});
+
+	// Popup on search search submit or select
+	
+
+
+}); // end am4core.ready()
