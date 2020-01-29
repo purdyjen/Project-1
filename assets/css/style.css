@@ -252,5 +252,6 @@ nav {
   .navbar-nav{
       background-color:  #ec6d6dfa;
       text-align: center;
-      line-height: 30px;       
+      line-height: 30px;    
+      border-radius: 10px;   
 }
