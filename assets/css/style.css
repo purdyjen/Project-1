@@ -8,6 +8,7 @@ body {
    background-image: url(../images/indexbg.jpg);
 }
 
+
 #chartdiv {
    width: 100%;
    height: 500px;
@@ -123,6 +124,7 @@ h1 {
 
 }
 
+
 .ampopup {
    overflow: visible;
    position: absolute;
@@ -207,6 +209,7 @@ h1 {
    position: relative;
    bottom: 0;
    margin: 0px;
+   padding: 0px;
    width: 100%;
    height: 60px;
    background-color: #ec6d6dfa;
