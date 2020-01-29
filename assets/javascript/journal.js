@@ -11,6 +11,7 @@ $(document).ready(function () {
 
   firebase.initializeApp(config);
   var dataRef = firebase.database();
+  
 
   // set initial values
   var place = "";
@@ -65,7 +66,7 @@ $(document).ready(function () {
 
 
 
-      // Prettify the employee start
+      // Prettify
       var datePretty = moment.unix(diaryDate).format("MM/DD/YYYY");
 
       // Create a new row for the table
@@ -100,5 +101,68 @@ $(document).ready(function () {
     });
   });
 
+  var uiConfig = {
+    signInSuccessUrl: "https://yenseydm.github.io/Project-1/diary.html",
+    signInOptions: [
+      // Leave the lines as is for the providers you want to offer your users.
+      firebase.auth.GoogleAuthProvider.PROVIDER_ID,
+      firebase.auth.EmailAuthProvider.PROVIDER_ID
+    ]
+  };
 
+  // Initialize the FirebaseUI Widget using Firebase.
+  var ui = new firebaseui.auth.AuthUI(firebase.auth());
+  // Disable auto-sign in.
+ui.disableAutoSignIn();
+  // The start method will wait until the DOM is loaded.
+  ui.start("#firebaseui-auth-container", uiConfig);
+  // setup materialize components
+  document.addEventListener("DOMContentLoaded", function() {
+    var modals = document.querySelectorAll(".modal");
+    M.Modal.init(modals);
+  });
+
+  // signup
+  $("#signup-form-submit").on("click", function e() {
+    e.preventDefault();
+
+    // get user info
+    var email = $("#signup-email").val();
+    var password = $("#signup-password").val();
+
+    // sign up the user
+    dataRef.auth().createUserWithEmailAndPassword(email, password).then(cred => {
+      console.log(cred.user);
+      // close the signup modal & reset form
+      var modal = $("#modal-signup");
+
+      M.Modal.getInstance(modal).close();
+      $("#signup-form").reset();
+    });
+  });
+
+  // logout
+  // const logout = document.querySelector("#logout");
+  // logout.addEventListener("click", e => {
+  //   e.preventDefault();
+  //   auth.signOut().then(() => {
+  //     console.log("user signed out");
+  //   });
+  // });
+  
+  //Authentication listener
+  addAuthStateListener(AuthStateListener)
+$("#login").hide();
+
+mAuthListener = new FirebaseAuth.AuthStateListener() {
+  
+function onAuthStateChanged() {
+     var currentUser = firebaseAuth.getCurrentUser();
+     var currentUserData = firebase.auth().currentUser;
+     var userRef = dataRef.ref("/users");
+      if (currentUser != null) {
+          // Sign in logic here.
+      }
+  }
+};
 });
