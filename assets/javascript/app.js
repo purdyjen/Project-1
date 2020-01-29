@@ -81,6 +81,7 @@ am4core.ready(function () {
 		popup.top = ev.svgPoint.y + 15;
 		$(".ampopup-header").hide();
 
+	
 		// grabs the country id for geoDB api 
 		countryid = ev.target.dataItem.dataContext.id
 		// settings to pass to ajax call
@@ -105,9 +106,102 @@ am4core.ready(function () {
 		// ADD DIVS FOR PICS AND INFO
 
 		// THIS IS WHERE YOU PUT EVENTS TIED TO POPUP
-		// chart.modal.events.on("opened", function(ev) {
-		// 	console.log(ev);
-		//   });
+
+
+		//yelp business api
+		var businessSettings = {
+			"async": true,
+			"crossDomain": true,
+			"url": "https://yelpapiserg-osipchukv1.p.rapidapi.com/getBusinesses" + countryid,
+			"method": "POST",
+			"headers": {
+				"x-rapidapi-host": "YelpAPIserg-osipchukV1.p.rapidapi.com",
+				"x-rapidapi-key": "de7f14a889msh47739a53de91d23p176494jsn5618424a7788",
+				"content-type": "application/x-www-form-urlencoded"
+			},
+			"data": {
+				"attributes": "top_tourists_spots, hot_and_new",
+				"term": "restaurants, event, food, activities, family_fun, travel",
+				"openNow": "false",
+				"locale": "Popup",
+				"radius": "40000",
+				"location": "city, coordinates, address, state or zip, country",
+				"coordinate": "\"longitude\",\"latitude\"",
+				"accessToken": "FVtUcdjPbjyM3FzTfJ6z6w8fRLyWucMi_1rFrNntVL7m15VCiZVGznGIIuRbbC0KPcnAwbuu6S2gKqFmaqf8u5tZvSew4DD-747alCICgvLc_FW81hOqTWrUiVgrXnYx"
+			}
+		}
+		
+		$.ajax(businessSettings).done(function (response) {
+			console.log(response);
+		});
+
+
+
+		chart.modal.events.on("opened", function (ev) {
+			console.log(ev);
+		});
+
+		//yelp featured event api
+		var eventSettings = {
+			"async": true,
+			"crossDomain": true,
+			"url": "https://yelpapiserg-osipchukv1.p.rapidapi.com/getFeaturedEvent" + countryid,
+			"method": "POST",
+			"headers": {
+				"x-rapidapi-host": "YelpAPIserg-osipchukV1.p.rapidapi.com",
+				"x-rapidapi-key": "de7f14a889msh47739a53de91d23p176494jsn5618424a7788",
+				"content-type": "application/x-www-form-urlencoded"
+			},
+			"data": {
+				"locale": "search",
+				"location": "city",
+				"coordinates": "countryid",
+				"accessToken": "FVtUcdjPbjyM3FzTfJ6z6w8fRLyWucMi_1rFrNntVL7m15VCiZVGznGIIuRbbC0KPcnAwbuu6S2gKqFmaqf8u5tZvSew4DD-747alCICgvLc_FW81hOqTWrUiVgrXnYx"
+			}
+		}
+		
+		$.ajax(EventSettings).done(function (response) {
+			console.log(response);
+		});
+		//yelp autocomplete api
+		var autocompleteSettings = {
+			"async": true,
+			"crossDomain": true,
+			"url": "https://yelpapiserg-osipchukv1.p.rapidapi.com/getAutocomplete" + countryid,
+			"method": "POST",
+			"headers": {
+				"x-rapidapi-host": "YelpAPIserg-osipchukV1.p.rapidapi.com",
+				"x-rapidapi-key": "de7f14a889msh47739a53de91d23p176494jsn5618424a7788",
+				"content-type": "application/x-www-form-urlencoded"
+			},
+			"data": {
+				"coordinate": "countryid",
+				"locale": "search",
+				"accessToken": "FVtUcdjPbjyM3FzTfJ6z6w8fRLyWucMi_1rFrNntVL7m15VCiZVGznGIIuRbbC0KPcnAwbuu6S2gKqFmaqf8u5tZvSew4DD-747alCICgvLc_FW81hOqTWrUiVgrXnYx",
+				"text": "search"
+			}
+		}
+		
+		$.ajax(settings).done(function (response) {
+			console.log(response);
+		});
+
+		//Instagram tag api
+		var tagSettings = {
+			"async": true,
+			"crossDomain": true,
+			"url": "https://instagramdimashirokovv1.p.rapidapi.com/tag/travel/optional" + countryid,
+			"method": "GET",
+			"headers": {
+				"x-rapidapi-host": "InstagramdimashirokovV1.p.rapidapi.com",
+				"x-rapidapi-key": "de7f14a889msh47739a53de91d23p176494jsn5618424a7788"
+			}
+		}
+		
+		$.ajax(settings).done(function (response) {
+			console.log(response);
+			
+		});
 
 		// SEARCH FUNCTION
 
