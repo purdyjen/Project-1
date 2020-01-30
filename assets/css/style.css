@@ -157,8 +157,9 @@ h1 {
    position: absolute;
    width: 25%;
    height: 50%;
-   border: double #ec6d6dfa;
-
+   /* border: double #ec6d6dfa; */
+   box-shadow: 2px 2px 8px rgb(70, 69, 69);
+   text-align: center;
    /* max-width: 90%;
    max-height: 90%; */
    /* overflow: auto; */
@@ -238,8 +239,9 @@ h1 {
 }
 
 .flag-img {
-   width: 5em;
-   height: 3em;
+   width: 6em;
+   height: 4em;
+   box-shadow: 2px 2px 8px rgb(70, 69, 69);
 }
 
 nav {
@@ -258,4 +260,9 @@ nav {
       text-align: center;
       line-height: 30px;    
       border-radius: 10px;   
+}
+
+.ampopup-inside {
+font-size: 20px;
+font-weight: bold;
 }
