@@ -117,29 +117,12 @@ ui.disableAutoSignIn();
   // The start method will wait until the DOM is loaded.
   ui.start("#firebaseui-auth-container", uiConfig);
   // setup materialize components
-  document.addEventListener("DOMContentLoaded", function() {
-    var modals = document.querySelectorAll(".modal");
-    M.Modal.init(modals);
-  });
+  // document.addEventListener("DOMContentLoaded", function() {
+  //   var modals = document.querySelectorAll(".modal");
+  //   M.Modal.init(modals);
+  // });
 
-  // signup
-  $("#signup-form-submit").on("click", function e() {
-    e.preventDefault();
 
-    // get user info
-    var email = $("#signup-email").val();
-    var password = $("#signup-password").val();
-
-    // sign up the user
-    dataRef.auth().createUserWithEmailAndPassword(email, password).then(cred => {
-      console.log(cred.user);
-      // close the signup modal & reset form
-      var modal = $("#modal-signup");
-
-      M.Modal.getInstance(modal).close();
-      $("#signup-form").reset();
-    });
-  });
 
   // logout
   // const logout = document.querySelector("#logout");
@@ -151,18 +134,24 @@ ui.disableAutoSignIn();
   // });
   
   //Authentication listener
-  addAuthStateListener(AuthStateListener)
-$("#login").hide();
 
-mAuthListener = new FirebaseAuth.AuthStateListener() {
-  
-function onAuthStateChanged() {
-     var currentUser = firebaseAuth.getCurrentUser();
-     var currentUserData = firebase.auth().currentUser;
+
+  firebase.auth().onAuthStateChanged(function(user) {
+    if (user) {
+      // User is signed in.
+     var currentUser = firebase.auth().currentUser;
      var userRef = dataRef.ref("/users");
       if (currentUser != null) {
           // Sign in logic here.
+          $("#my-journal").hide();
+          console.log("Not logged in.");
+      } else {
+        $("#my-journal").show();
+        $("#login").hide();
+        console.log("Logged in.");
       }
-  }
-};
-});
+    }
+  });
+  
+
+}); //doc ready closing tag

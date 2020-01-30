@@ -62,16 +62,14 @@
 
 
     <br><br>
-    <div class="container">
+
+    <div class="text-center">
+        <a href="" id="login" class="btn btn-default btn-rounded mb-4" data-toggle="modal" data-target="#login-form">Log
+            In or Sign Up to Use Journal</a>
+    </div>
+
+    <div id="my-journal" class="container">
         <h1> My Journal</h1>
-
-        
-
-        <div class="text-center">
-            <a href="" id="login" class="btn btn-default btn-rounded mb-4" data-toggle="modal" data-target="#login-form">Log
-                In or Sign Up to Use Journal</a>
-        </div>
-
 
         <table class="table" id="diary-table">
             <thead>
@@ -115,22 +113,27 @@
             </div>
             <button class="btn btn-primary" type="submit" id="addMe">Add me to your journal!</button>
         </form>
+  
+        <br><br>
+        <div class="container">
+            <h1>Photo Book</h1>
+    
+    
+            <!-- upload images -->
+            <br><br>
+            <input type='file' />
+            <br><br>
+    
+            <img id="myImg" src="#" alt="your memories..." height=200 width=100>
+        
+        </div>
+       <br><br>
+  
+  
+  
     </div>
     
-    <br><br>
-    <div class="container">
-        <h1>Photo Book</h1>
 
-
-        <!-- upload images -->
-        <br><br>
-        <input type='file' />
-        <br><br>
-
-        <img id="myImg" src="#" alt="your memories..." height=200 width=100>
-    
-    </div>
-   <br><br>
 
      <!-- Log-In Modal -->
     <div class="modal fade" id="login-form" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
