@@ -11,7 +11,7 @@ $(document).ready(function() {
   firebase.initializeApp(config);
 
   var dataRef = firebase.database();
-
+  var userRef = dataRef.ref("users");
 
   // set initial values
   var place = "";
@@ -121,6 +121,17 @@ $(document).ready(function() {
     console.log("user signed out");
   });
 
+// save the user's profile into Firebase so we can list users,
+// use them in Security and Firebase Rules, and show profiles
+function writeUserData(userId, name, email) {
+  userRef.child(userId).set({
+    userId: userId,
+    email: email
+  });
+  console.log("user data set");
+}
+
+
   firebase.auth().onAuthStateChanged(function(user) {
     if (user) {
       // User is signed in.
@@ -136,6 +147,7 @@ $(document).ready(function() {
         // $("#logout").show();
         // $("#login").hide();
         console.log("Logged in.");
+        writeUserData (userId, name, email);
       }
     }
   });
