@@ -12,12 +12,17 @@ $(document).ready(function () {
   firebase.initializeApp(config);
   var dataRef = firebase.database();
 
+
   // set initial values
   var place = "";
   var dest = "";
   var date = "";
   var comment = "";
   var entryNum = 0;
+
+
+  var image = "";
+
 
   // capture button click
   $("#addMe").on("click", function (event) {
@@ -64,7 +69,10 @@ $(document).ready(function () {
 
 
 
+
       // Prettify the employee start
+
+
       var datePretty = moment.unix(diaryDate).format("MM/DD/YYYY");
 
       // Create a new row for the table
@@ -80,9 +88,76 @@ $(document).ready(function () {
       $("#diary-table > tbody").prepend(newRow);
     });
 
+  // upload images
+  window.addEventListener('load', function () {
+    document.querySelector('input[type="file"]').addEventListener('change', function () {
 
-  
+      event.preventDefault();
 
-  
+      for (i = 0; i < this.files.length; i++) {
+        if (this.files && this.files[i]) {
 
+          var img = document.querySelector('img');
+          img.src = URL.createObjectURL(this.files[i]);
+
+
+        }
+      }
+
+    });
   });
+
+  var uiConfig = {
+    signInSuccessUrl: "https://yenseydm.github.io/Project-1/diary.html",
+    signInOptions: [
+      // Leave the lines as is for the providers you want to offer your users.
+      firebase.auth.GoogleAuthProvider.PROVIDER_ID,
+      firebase.auth.EmailAuthProvider.PROVIDER_ID
+    ]
+  };
+
+  // Initialize the FirebaseUI Widget using Firebase.
+  var ui = new firebaseui.auth.AuthUI(firebase.auth());
+  // Disable auto-sign in.
+ui.disableAutoSignIn();
+  // The start method will wait until the DOM is loaded.
+  ui.start("#firebaseui-auth-container", uiConfig);
+  // setup materialize components
+  // document.addEventListener("DOMContentLoaded", function() {
+  //   var modals = document.querySelectorAll(".modal");
+  //   M.Modal.init(modals);
+  // });
+
+
+
+  //logout
+  $("#logout").on("click", function(){
+    event.preventDefault();
+    firebase.auth().signOut();
+    $("#my-journal").show();
+          $("#logout").hide();
+          $("#login").show();
+      console.log("user signed out");
+  });
+
+  firebase.auth().onAuthStateChanged(function(user) {
+    if (user) {
+      // User is signed in.
+     var currentUser = firebase.auth().currentUser;
+     var userRef = dataRef.ref("/users");
+      if (currentUser === null) {
+          $("#my-journal").hide();
+          $("#logout").hide();
+          $("#login").show();
+          console.log("Not logged in.");
+      } else {
+        $("#my-journal").show();
+        $("#logout").show();
+        $("#login").hide();
+        console.log("Logged in.");
+      }
+    }
+  });
+  
+
+}); //doc ready closing tag

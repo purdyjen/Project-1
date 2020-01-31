@@ -100,8 +100,25 @@ am4core.ready(function () {
 		// geoDB ajax call
 		$.ajax(geoDBsettings).done(function (response) {
 			console.log(response);
-			var numRegions = response.data.numRegions
-			console.log(numRegions)
+			// variables set from ajax response object
+			var numRegions = response.data.numRegions;
+			var currency = response.data.currencyCodes[0];
+			var flag = response.data.flagImageUri;
+
+			// inital tag creation
+			var regionInfo = $("<p>").text("Number of regions: " + numRegions);
+			var currencyInfo = $("<p>").text("Currency: " + currency)
+			var countryFlag = $("<img>").attr("src", flag);
+			countryFlag.addClass("flag-img");
+
+			// appending tags to the overall div
+			var dataDump = $("<div>");
+			dataDump.append(regionInfo);
+			dataDump.append(currencyInfo);
+			dataDump.append(countryFlag);
+
+			// appending dataDump to popup
+			$(".ampopup-content").append(dataDump);
 		});
 
 
