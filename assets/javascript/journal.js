@@ -1,17 +1,15 @@
-$(document).ready(function () {
-
+$(document).ready(function() {
   // Initialize firebase
   const config = {
     apiKey: "AIzaSyDgVXzyxHgZtoc_mcbqu-qRr_bdPNFJx3I",
     authDomain: "group-b-project-one.firebaseapp.com",
     databaseURL: "https://group-b-project-one.firebaseio.com",
     projectId: "group-b-project-one",
-    storageBucket: "",
+    storageBucket: ""
   };
 
   firebase.initializeApp(config);
   var dataRef = firebase.database();
-  
 
   // set initial values
   var place = "";
@@ -22,14 +20,22 @@ $(document).ready(function () {
   var image = "";
 
   // capture button click
-  $("#addMe").on("click", function (event) {
+  $("#addMe").on("click", function(event) {
     event.preventDefault();
 
-    place = $("#place-input").val().trim();
-    dest = $("#dest-input").val().trim();
-    date = $("#date-input").val().trim();
-    comment = $("#comments-input").val().trim();
-    console.log(place)
+    place = $("#place-input")
+      .val()
+      .trim();
+    dest = $("#dest-input")
+      .val()
+      .trim();
+    date = $("#date-input")
+      .val()
+      .trim();
+    comment = $("#comments-input")
+      .val()
+      .trim();
+    console.log(place);
 
     var newDiary = {
       place: place,
@@ -37,8 +43,7 @@ $(document).ready(function () {
       date: date,
       comment: comment,
       dateAdded: firebase.database.ServerValue.TIMESTAMP
-
-    }
+    };
     // push to firebase
     dataRef.ref().push(newDiary);
 
@@ -47,12 +52,9 @@ $(document).ready(function () {
     $("#dest-input").val("");
     $("#date-input").val("");
     $("#comment-input").val("");
-
-
   }),
-
     // Firebase watcher
-    dataRef.ref().on("child_added", function (childSnapshot) {
+    dataRef.ref().on("child_added", function(childSnapshot) {
       // view the object
       console.log(childSnapshot.val());
       entryNum++;
@@ -62,9 +64,6 @@ $(document).ready(function () {
       var diaryDest = childSnapshot.val().dest;
       var diaryDate = childSnapshot.val().date;
       var diaryComment = childSnapshot.val().comment;
-
-
-
 
       // Prettify
       var datePretty = moment.unix(diaryDate).format("MM/DD/YYYY");
@@ -83,22 +82,19 @@ $(document).ready(function () {
     });
 
   // upload images
-  window.addEventListener('load', function () {
-    document.querySelector('input[type="file"]').addEventListener('change', function () {
+  window.addEventListener("load", function() {
+    document
+      .querySelector('input[type="file"]')
+      .addEventListener("change", function() {
+        event.preventDefault();
 
-      event.preventDefault();
-
-      for (i = 0; i < this.files.length; i++) {
-        if (this.files && this.files[i]) {
-
-          var img = document.querySelector('img');
-          img.src = URL.createObjectURL(this.files[i]);
-
-
+        for (i = 0; i < this.files.length; i++) {
+          if (this.files && this.files[i]) {
+            var img = document.querySelector("img");
+            img.src = URL.createObjectURL(this.files[i]);
+          }
         }
-      }
-
-    });
+      });
   });
 
   var uiConfig = {
@@ -113,45 +109,36 @@ $(document).ready(function () {
   // Initialize the FirebaseUI Widget using Firebase.
   var ui = new firebaseui.auth.AuthUI(firebase.auth());
   // Disable auto-sign in.
-ui.disableAutoSignIn();
+  ui.disableAutoSignIn();
   // The start method will wait until the DOM is loaded.
   ui.start("#firebaseui-auth-container", uiConfig);
-  // setup materialize components
-  // document.addEventListener("DOMContentLoaded", function() {
-  //   var modals = document.querySelectorAll(".modal");
-  //   M.Modal.init(modals);
-  // });
-
-
 
   //logout
-  $("#logout").on("click", function(){
+  $("#logout").on("click", function() {
     event.preventDefault();
     firebase.auth().signOut();
-    $("#my-journal").show();
-          $("#logout").hide();
-          $("#login").show();
-      console.log("user signed out");
+    // $("#my-journal").show();
+    // $("#logout").hide();
+    // $("#login").show();
+    console.log("user signed out");
   });
 
   firebase.auth().onAuthStateChanged(function(user) {
     if (user) {
       // User is signed in.
-     var currentUser = firebase.auth().currentUser;
-     var userRef = dataRef.ref("/users");
+      var currentUser = firebase.auth().currentUser;
+      var userRef = dataRef.ref("users");
       if (currentUser === null) {
-          $("#my-journal").hide();
-          $("#logout").hide();
-          $("#login").show();
-          console.log("Not logged in.");
+        // $("#my-journal").hide();
+        // $("#logout").hide();
+        // $("#login").show();
+        console.log("Not logged in.");
       } else {
-        $("#my-journal").show();
-        $("#logout").show();
-        $("#login").hide();
+        // $("#my-journal").show();
+        // $("#logout").show();
+        // $("#login").hide();
         console.log("Logged in.");
       }
     }
   });
-  
-
 }); //doc ready closing tag
