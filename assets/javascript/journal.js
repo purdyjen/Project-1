@@ -1,13 +1,11 @@
-$(document).ready(function () {
-
+$(document).ready(function() {
   // Initialize firebase
   const config = {
     apiKey: "AIzaSyDgVXzyxHgZtoc_mcbqu-qRr_bdPNFJx3I",
     authDomain: "group-b-project-one.firebaseapp.com",
     databaseURL: "https://group-b-project-one.firebaseio.com",
     projectId: "group-b-project-one",
-    storageBucket: "group-b-project-one.appspot.com",
-
+    storageBucket: ""
   };
 
   firebase.initializeApp(config);
@@ -39,8 +37,9 @@ $(document).ready(function () {
   var entryNum = 0;
 
   // capture button click
-  $("#addMe").on("click", function (event) {
+  $("#addMe").on("click", function(event) {
     event.preventDefault();
+
 
     place = $("#place-input").val().trim();
     dest = $("#dest-input").val().trim();
@@ -54,8 +53,7 @@ $(document).ready(function () {
       date: date,
       comment: comment,
       dateAdded: firebase.database.ServerValue.TIMESTAMP
-
-    }
+    };
     // push to firebase
     dataRef.ref().push(newDiary);
 
@@ -65,9 +63,8 @@ $(document).ready(function () {
     $("#date-input").val("");
     $("#comment-input").val("");
   }),
-
     // Firebase watcher
-    dataRef.ref().on("child_added", function (childSnapshot) {
+    dataRef.ref().on("child_added", function(childSnapshot) {
       // view the object
       console.log(childSnapshot.val());
       entryNum++;
@@ -140,9 +137,9 @@ $(document).ready(function () {
         $("#login").show();
         console.log("Not logged in.");
       } else {
-        $("#my-journal").show();
-        $("#logout").show();
-        $("#login").hide();
+        // $("#my-journal").show();
+        // $("#logout").show();
+        // $("#login").hide();
         console.log("Logged in.");
       }
     }
