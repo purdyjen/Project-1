@@ -12,54 +12,73 @@
 
     <!-- jquery -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <!-- materialize-->
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 
     <!-- bootstrap-->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
         integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
-        integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
-        crossorigin="anonymous"></script>
+        integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous">
+    </script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
-        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
-        crossorigin="anonymous"></script>
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous">
+    </script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
-        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
-        crossorigin="anonymous"></script>
+        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous">
+    </script>
     <!-- firebase-->
     <script src="https://www.gstatic.com/firebasejs/6.0.4/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/6.0.4/firebase-database.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/6.0.4/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/ui/4.3.0/firebase-ui-auth.js"></script>
+    <link type="text/css" rel="stylesheet" href="https://www.gstatic.com/firebasejs/ui/4.3.0/firebase-ui-auth.css" />
     <!-- Moment.js Reference -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js"></script>
     <!-- CSS -->
+    <link rel="stylesheet" href="../Project-1/assets/css/reset.css">
     <link rel="stylesheet" href="../Project-1/assets/css/journal.css">
     <!-- js -->
     <script type="text/javascript" src="assets/javascript/journal.js"></script>
-
     <link rel="shortcut icon" type="image/png" href="../Project-1/assets/images/pin.png" />
 
     <title>The Bucket</title>
 </head>
 
 <body>
-    <nav>
-        <div class="nav-wrapper">
-            <a href="index.html" class="brand-logo"> The Bucket </a>
-            <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
-            <ul class="right hide-on-med-and-down">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="diary.html" data-toggle="modal" data-target="#exampleModal">My Journal</a></li>
-            </ul>
+
+    <!-- nav bar -->
+    <nav class="navbar navbar-expand-lg navbar-dark" id="nav">
+        <a class="navbar-brand" href="index.html">The Bucket</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
+            aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <div class="navbar-nav">
+                <a class="nav-item nav-link active" href="index.html">Home <span class="sr-only">(current)</span></a>
+                <a class="nav-item nav-link active" href="diary.html" data-toggle="modal" data-target="#exampleModal">My
+                    Journal</a>
+            </div>
         </div>
     </nav>
 
-    <ul class="sidenav" id="mobile-demo">
-        <li><a href="index.html">Home</a></li>
-        <li><a href="diary.html" data-toggle="modal" data-target="#exampleModal">My Journal</a></li>
-    </ul>
+    <!-- start of journal-->
+    <br><br>
 
+    <div class="text-center">
+        <a href="" id="login" class="btn btn-default btn-rounded mb-4" data-toggle="modal" data-target="#login-form">Log
+            In or Sign Up to Use Journal</a>
+    </div>
+    <div class="text-center">
+        <a href="" id="logout" class="btn btn-default btn-rounded mb-4">Log Out</a>
+    </div>
 
-    
-    <div class="container">
+    <div id="my-journal" class="container">
         <h1> My Journal</h1>
 
         <table class="table" id="diary-table">
@@ -102,45 +121,50 @@
                 <label for="place visited">Comments</label>
                 <input type="text" class="form-control" id="comments-input" placeholder="I loved Place Café">
             </div>
-            <button class="btn btn-primary" type="submit" id="addMe" data-toggle="modal" data-target="#exampleModal">Add me to your journal!</button>
+            <button class="btn btn-primary" type="submit" id="addMe">Add me to your journal!</button>
         </form>
+
+    </div>
+    <br><br>
+    <div class="container">
+        <h1>Photo Book</h1>
+
+
+        <!-- upload images -->
+        <br><br>
+        <input type='file' />
+        <br><br>
+
+        <img id="myImg" src="#" alt="your memories..." height=200 width=100>
+
+    </div>
+    <br><br>
+
+
+
     </div>
 
-   
-    <!-- Modal -->
-    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+
+
+    <!-- Log-In Modal -->
+    <div class="modal fade" id="login-form" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Log-In</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Log In or Sign Up</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form>
-                        <div class="form-group">
-                            <label for="exampleInputEmail1">Email address</label>
-                            <input type="email" class="form-control" id="exampleInputEmail1"
-                                aria-describedby="emailHelp">
-                            <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone
-                                else.</small>
-                        </div>
-                        <div class="form-group">
-                            <label for="exampleInputPassword1">Password</label>
-                            <input type="password" class="form-control" id="exampleInputPassword1">
-                        </div>
-                    </form>
+                    <div id="firebaseui-auth-container"></div>
                 </div>
-                <div class="modal-footer">
-                    <button type="submit" class="btn btn-primary">Sign-In</button>
 
-                </div>
             </div>
         </div>
     </div>
-<!-- footer -->
+    <!-- footer -->
     <footer class="footer">
         <div class="footer-copyright">
             <div id="copy">
