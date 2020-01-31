@@ -9,7 +9,9 @@ $(document).ready(function() {
   };
 
   firebase.initializeApp(config);
+
   var dataRef = firebase.database();
+
 
   // set initial values
   var place = "";
@@ -17,24 +19,17 @@ $(document).ready(function() {
   var date = "";
   var comment = "";
   var entryNum = 0;
-  var image = "";
+
 
   // capture button click
   $("#addMe").on("click", function(event) {
     event.preventDefault();
 
-    place = $("#place-input")
-      .val()
-      .trim();
-    dest = $("#dest-input")
-      .val()
-      .trim();
-    date = $("#date-input")
-      .val()
-      .trim();
-    comment = $("#comments-input")
-      .val()
-      .trim();
+
+    place = $("#place-input").val().trim();
+    dest = $("#dest-input").val().trim();
+    date = $("#date-input").val().trim();
+    comment = $("#comments-input").val().trim();
     console.log(place);
 
     var newDiary = {
@@ -65,7 +60,9 @@ $(document).ready(function() {
       var diaryDate = childSnapshot.val().date;
       var diaryComment = childSnapshot.val().comment;
 
+
       // Prettify
+
       var datePretty = moment.unix(diaryDate).format("MM/DD/YYYY");
 
       // Create a new row for the table
@@ -82,6 +79,7 @@ $(document).ready(function() {
     });
 
   // upload images
+
   window.addEventListener("load", function() {
     document
       .querySelector('input[type="file"]')
@@ -96,6 +94,7 @@ $(document).ready(function() {
         }
       });
   });
+
 
   var uiConfig = {
     signInSuccessUrl: "https://yenseydm.github.io/Project-1/diary.html",
