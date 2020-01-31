@@ -14,52 +14,22 @@ $(document).ready(function () {
 
   var dataRef = firebase.database();
 
-  // var storageS = firebase.storage();
-  // var storageRef = storageS.ref();
- 
-  // document.querySelector('.file-select').addEventListener('change', handleFileUploadChange);
-  // document.querySelector('.file-submit').addEventListener('click', handleFileUploadSubmit);
-
-  // let selectedFile; 
-  // handleFileUploadChange(event) {
-  //   selectedFile = e.target.files[0];
-  // } 
-  // handleFileUploadSubmit(event) { 
-
-  //   const uploadTask = storageRef.child('images/${selectedFile.name}').put(selectedFile);
-
-  //   uploadTask.on('state_changed', (snapshot) => {
-
-  //   }, (error) => {
-  //     console.log(error);
-  //   }, () => {
-  //     console.log('success');
-  //   })
-  // }
-
   //add image
-  window.addEventListener('load', function () {
-    document.querySelector('input[type="file"]').addEventListener('change', function () {
 
-      event.preventDefault();
+  document.querySelector('input[type="file"]').addEventListener('change', function () {
+    event.preventDefault();
+    for (i = 0; i < this.files.length; i++) {
+      if (this.files && this.files[i]) {
+        var img = document.querySelector('img');
+        img.src = URL.createObjectURL(this.files[i]);
 
-      for (i = 0; i < this.files.length; i++) {
-        if (this.files && this.files[i]) {
-          var img = document.querySelector('img');
-          img.src = URL.createObjectURL(this.files[i]);
-          
-          var newImg = $("<img>");
-          newImg.attr("src", img.src);
-          newImg.addClass("myImg");
-          $("#imgBox").append(newImg);
-
-        }
+        var newImg = $("<img>");
+        newImg.attr("src", img.src);
+        newImg.addClass("myImg");
+        $("#imgBox").append(newImg);
       }
-
-    });
+    }
   });
-  
-
 
   // set initial values
   var place = "";
@@ -67,7 +37,6 @@ $(document).ready(function () {
   var date = "";
   var comment = "";
   var entryNum = 0;
-
 
   // capture button click
   $("#addMe").on("click", function (event) {
@@ -95,8 +64,6 @@ $(document).ready(function () {
     $("#dest-input").val("");
     $("#date-input").val("");
     $("#comment-input").val("");
-
-
   }),
 
     // Firebase watcher
@@ -112,12 +79,7 @@ $(document).ready(function () {
       var diaryComment = childSnapshot.val().comment;
 
 
-
-
-
       // Prettify the employee start
-
-
       var datePretty = moment.unix(diaryDate).format("MM/DD/YYYY");
 
       // Create a new row for the table
@@ -133,10 +95,7 @@ $(document).ready(function () {
       $("#diary-table > tbody").prepend(newRow);
     });
 
-  // upload images
-  
-
-  
+  // log-in
 
   var uiConfig = {
     signInSuccessUrl: "https://yenseydm.github.io/Project-1/diary.html",
@@ -150,7 +109,7 @@ $(document).ready(function () {
   // Initialize the FirebaseUI Widget using Firebase.
   var ui = new firebaseui.auth.AuthUI(firebase.auth());
   // Disable auto-sign in.
-ui.disableAutoSignIn();
+  ui.disableAutoSignIn();
   // The start method will wait until the DOM is loaded.
   ui.start("#firebaseui-auth-container", uiConfig);
   // setup materialize components
@@ -160,27 +119,26 @@ ui.disableAutoSignIn();
   // });
 
 
-
   //logout
-  $("#logout").on("click", function(){
+  $("#logout").on("click", function () {
     event.preventDefault();
     firebase.auth().signOut();
     $("#my-journal").show();
-          $("#logout").hide();
-          $("#login").show();
-      console.log("user signed out");
+    $("#logout").hide();
+    $("#login").show();
+    console.log("user signed out");
   });
 
-  firebase.auth().onAuthStateChanged(function(user) {
+  firebase.auth().onAuthStateChanged(function (user) {
     if (user) {
       // User is signed in.
-     var currentUser = firebase.auth().currentUser;
-     var userRef = dataRef.ref("/users");
+      var currentUser = firebase.auth().currentUser;
+      var userRef = dataRef.ref("/users");
       if (currentUser === null) {
-          $("#my-journal").hide();
-          $("#logout").hide();
-          $("#login").show();
-          console.log("Not logged in.");
+        $("#my-journal").hide();
+        $("#logout").hide();
+        $("#login").show();
+        console.log("Not logged in.");
       } else {
         $("#my-journal").show();
         $("#logout").show();
@@ -189,6 +147,5 @@ ui.disableAutoSignIn();
       }
     }
   });
-  
 
 }); //doc ready closing tag
