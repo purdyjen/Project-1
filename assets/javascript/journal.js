@@ -47,6 +47,12 @@ $(document).ready(function () {
         if (this.files && this.files[i]) {
           var img = document.querySelector('img');
           img.src = URL.createObjectURL(this.files[i]);
+          
+          var newImg = $("<img>");
+          newImg.attr("src", img.src);
+          newImg.addClass("myImg");
+          $("#imgBox").append(newImg);
+
         }
       }
 

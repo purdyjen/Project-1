@@ -48,14 +48,14 @@ label{
     line-height: 60px;
  }
 
- #myImg{
+ .myImg{
      width: 230px;
      height: 250px;
      border-color: white ;
      border-style: solid;
      border-width: 10px;
      border-bottom-width: 50px;
-     rotate: -2px;
+     margin: 10px;
      filter: drop-shadow(0 0 0.75rem rgb(163, 161, 161));
  }
 
