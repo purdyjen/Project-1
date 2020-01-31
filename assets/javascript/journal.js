@@ -12,7 +12,6 @@ $(document).ready(function() {
 
   var dataRef = firebase.database();
 
-
   // set initial values
   var place = "";
   var dest = "";
