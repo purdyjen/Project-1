@@ -115,7 +115,7 @@ am4core.ready(function () {
 			dataDump.append(countryFlag);
 
 			// appending dataDump to popup
-			$(".ampopup-inside").append(dataDump);
+			$(".ampopup-content").append(dataDump);
 		});
 
 

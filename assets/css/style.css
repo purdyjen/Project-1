@@ -150,14 +150,18 @@ h1 {
 }
 
 .ampopup-content {
-   padding: 1em 2em;
+   padding: .5em 1em;
    background: rgb(255, 255, 255);
    background-color: rgba(255, 255, 255, 0.8);
    display: inline-block;
    position: absolute;
-   max-width: 90%;
-   max-height: 90%;
-   overflow: auto;
+   width: 25%;
+   height: 50%;
+   border: double #ec6d6dfa;
+
+   /* max-width: 90%;
+   max-height: 90%; */
+   /* overflow: auto; */
    z-index: 2002
 }
 
@@ -236,4 +240,22 @@ h1 {
 .flag-img {
    width: 5em;
    height: 3em;
+}
+
+nav {
+   background-color: #ec6d6dfa;
+   color: white;
+   font-size: 20px;
+}
+
+.navbar-brand {
+   text-shadow: 2px 2px 8px rgb(70, 69, 69);
+      font-size: 40px;
+  }
+  
+  .navbar-nav{
+      background-color:  #ec6d6dfa;
+      text-align: center;
+      line-height: 30px;    
+      border-radius: 10px;   
 }
