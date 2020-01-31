@@ -124,29 +124,29 @@ ui.disableAutoSignIn();
 
 
 
-  // logout
-  // const logout = document.querySelector("#logout");
-  // logout.addEventListener("click", e => {
-  //   e.preventDefault();
-  //   auth.signOut().then(() => {
-  //     console.log("user signed out");
-  //   });
-  // });
-  
-  //Authentication listener
-
+  //logout
+  $("#logout").on("click", function(){
+    event.preventDefault();
+    firebase.auth().signOut();
+    $("#my-journal").show();
+          $("#logout").hide();
+          $("#login").show();
+      console.log("user signed out");
+  });
 
   firebase.auth().onAuthStateChanged(function(user) {
     if (user) {
       // User is signed in.
      var currentUser = firebase.auth().currentUser;
      var userRef = dataRef.ref("/users");
-      if (currentUser != null) {
-          // Sign in logic here.
+      if (currentUser === null) {
           $("#my-journal").hide();
+          $("#logout").hide();
+          $("#login").show();
           console.log("Not logged in.");
       } else {
         $("#my-journal").show();
+        $("#logout").show();
         $("#login").hide();
         console.log("Logged in.");
       }
