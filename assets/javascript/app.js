@@ -57,116 +57,134 @@ $(document).ready(function () {
 				}
 			};
 
-
-			// geoDB ajax call
-			$.ajax(geoDBsettings).done(function (geoDBresponse) {
-				// console.log(geoDBresponse);
-				// variables set from ajax response object
-				var numRegions = geoDBresponse.data.numRegions;
-				var currency = geoDBresponse.data.currencyCodes[0];
-				var flag = geoDBresponse.data.flagImageUri;
-
-				// settings for currency exchange ajax call
-				var currencyXsettings = {
-					"async": true,
-					"crossDomain": true,
-					"url": "https://currency-converter5.p.rapidapi.com/currency/historical/2020-01-30?format=json&to=" + currency + "&from=USD&amount=1",
-					"method": "GET",
-					"headers": {
-						"x-rapidapi-host": "currency-converter5.p.rapidapi.com",
-						"x-rapidapi-key": "8c82e4dd37msh31e61bbc05c60afp12c20fjsn273f40e54380"
-					}
+			var ccSettings = {
+				"async": true,
+				"crossDomain": true,
+				"url": "https://countries-cities.p.rapidapi.com/location/country/" + countryid + "?format=json",
+				"method": "GET",
+				"headers": {
+					"x-rapidapi-host": "countries-cities.p.rapidapi.com",
+					"x-rapidapi-key": "8c82e4dd37msh31e61bbc05c60afp12c20fjsn273f40e54380"
 				}
-				// currency exchange ajax call
-				$.ajax(currencyXsettings).done(function (currencyXresponse) {
-					console.log(currencyXresponse);
-					console.log(currencyXresponse.rates.RUB.rate);
+			};
+
+			// cc ajax call
+			$.ajax(ccSettings).done(function (ccResoponse) {
+				// console.log(ccResoponse);
+				// variables set from cc ajax response object
+				var capital = ccResoponse.capital;
+				var pop = ccResoponse.population;
+
+				// geoDB ajax call
+				$.ajax(geoDBsettings).done(function (geoDBresponse) {
+					// console.log(geoDBresponse);
+
+					// variables set from geoDB ajax response object
+					var currency = geoDBresponse.data.currencyCodes[0];
+					var flag = geoDBresponse.data.flagImageUri;
+
+					// settings for currency exchange ajax call
+					// var currencyXsettings = {
+					// 	"async": true,
+					// 	"crossDomain": true,
+					// 	"url": "https://currency-converter5.p.rapidapi.com/currency/historical/2020-01-30?format=json&to=" + currency + "&from=USD&amount=1",
+					// 	"method": "GET",
+					// 	"headers": {
+					// 		"x-rapidapi-host": "currency-converter5.p.rapidapi.com",
+					// 		"x-rapidapi-key": "8c82e4dd37msh31e61bbc05c60afp12c20fjsn273f40e54380"
+					// 	}
+					// }
+					// currency exchange ajax call
+					// $.ajax(currencyXsettings).done(function (currencyXresponse) {
+					// 	console.log(currencyXresponse);
+					// 	console.log(currencyXresponse.rates.RUB.rate);
 
 					// set the variable for the exchange rate 
-					var rate = currencyXresponse.rates.RUB.rate;
+					// var rate = currencyXresponse.rates.RUB.rate;
 
 					// inital tag creation
-					var regionInfo = $("<p>").text("Number of regions: " + numRegions);
+					var capitalInfo = $("<p>").text("Capital: " + capital);
+					var popInfo = $("<p>").text("Population: " + pop);
 					var currencyInfo = $("<p>").text("Currency: " + currency);
-					var currencyRate = $("<p>").text("Currency exchange rate to USD: " + rate)
+					// var currencyRate = $("<p>").text("Currency exchange rate to USD: " + rate)
 					var countryFlag = $("<img>").attr("src", flag);
 					countryFlag.addClass("flag-img");
 
 					// appending tags to the overall div
 					var dataDump = $("<div>");
-					dataDump.append(regionInfo, currencyInfo, currencyRate, countryFlag);
+					dataDump.append(capitalInfo, popInfo, currencyInfo, countryFlag);
 
 					// appending dataDump to popup
 					$(".ampopup-content").append(dataDump);
 				});
 			});
+		})
 
-			//yelp featured event api
-			// var eventSettings = {
-			// 	"async": true,
-			// 	"crossDomain": true,
-			// 	"url": "https://yelpapiserg-osipchukv1.p.rapidapi.com/getFeaturedEvent" + countryid,
-			// 	"method": "POST",
-			// 	"headers": {
-			// 		"x-rapidapi-host": "YelpAPIserg-osipchukV1.p.rapidapi.com",
-			// 		"x-rapidapi-key": "de7f14a889msh47739a53de91d23p176494jsn5618424a7788",
-			// 		"content-type": "application/x-www-form-urlencoded"
-			// 	},
-			// 	"data": {
-			// 		"locale": "search",
-			// 		"location": "city",
-			// 		"coordinates": "countryid",
-			// 		"accessToken": "FVtUcdjPbjyM3FzTfJ6z6w8fRLyWucMi_1rFrNntVL7m15VCiZVGznGIIuRbbC0KPcnAwbuu6S2gKqFmaqf8u5tZvSew4DD-747alCICgvLc_FW81hOqTWrUiVgrXnYx"
-			// 	}
-			// }
+		//yelp featured event api
+		// var eventSettings = {
+		// 	"async": true,
+		// 	"crossDomain": true,
+		// 	"url": "https://yelpapiserg-osipchukv1.p.rapidapi.com/getFeaturedEvent" + countryid,
+		// 	"method": "POST",
+		// 	"headers": {
+		// 		"x-rapidapi-host": "YelpAPIserg-osipchukV1.p.rapidapi.com",
+		// 		"x-rapidapi-key": "de7f14a889msh47739a53de91d23p176494jsn5618424a7788",
+		// 		"content-type": "application/x-www-form-urlencoded"
+		// 	},
+		// 	"data": {
+		// 		"locale": "search",
+		// 		"location": "city",
+		// 		"coordinates": "countryid",
+		// 		"accessToken": "FVtUcdjPbjyM3FzTfJ6z6w8fRLyWucMi_1rFrNntVL7m15VCiZVGznGIIuRbbC0KPcnAwbuu6S2gKqFmaqf8u5tZvSew4DD-747alCICgvLc_FW81hOqTWrUiVgrXnYx"
+		// 	}
+		// }
 
-			// // $.ajax(EventSettings).done(function (response) {
-			// $.ajax(eventSettings).done(function (response) {
-			// 	console.log(response);
-			// });
+		// // $.ajax(EventSettings).done(function (response) {
+		// $.ajax(eventSettings).done(function (response) {
+		// 	console.log(response);
+		// });
 
-			// //yelp autocomplete api
-			// var autocompleteSettings = {
-			// 	"async": true,
-			// 	"crossDomain": true,
-			// 	"url": "https://yelpapiserg-osipchukv1.p.rapidapi.com/getAutocomplete" + countryid,
-			// 	"method": "POST",
-			// 	"headers": {
-			// 		"x-rapidapi-host": "YelpAPIserg-osipchukV1.p.rapidapi.com",
-			// 		"x-rapidapi-key": "de7f14a889msh47739a53de91d23p176494jsn5618424a7788",
-			// 		"content-type": "application/x-www-form-urlencoded"
-			// 	},
-			// 	"data": {
-			// 		"coordinate": "countryid",
-			// 		"locale": "search",
-			// 		"accessToken": "FVtUcdjPbjyM3FzTfJ6z6w8fRLyWucMi_1rFrNntVL7m15VCiZVGznGIIuRbbC0KPcnAwbuu6S2gKqFmaqf8u5tZvSew4DD-747alCICgvLc_FW81hOqTWrUiVgrXnYx",
-			// 		"text": "search"
-			// 	}
-			// }
+		// //yelp autocomplete api
+		// var autocompleteSettings = {
+		// 	"async": true,
+		// 	"crossDomain": true,
+		// 	"url": "https://yelpapiserg-osipchukv1.p.rapidapi.com/getAutocomplete" + countryid,
+		// 	"method": "POST",
+		// 	"headers": {
+		// 		"x-rapidapi-host": "YelpAPIserg-osipchukV1.p.rapidapi.com",
+		// 		"x-rapidapi-key": "de7f14a889msh47739a53de91d23p176494jsn5618424a7788",
+		// 		"content-type": "application/x-www-form-urlencoded"
+		// 	},
+		// 	"data": {
+		// 		"coordinate": "countryid",
+		// 		"locale": "search",
+		// 		"accessToken": "FVtUcdjPbjyM3FzTfJ6z6w8fRLyWucMi_1rFrNntVL7m15VCiZVGznGIIuRbbC0KPcnAwbuu6S2gKqFmaqf8u5tZvSew4DD-747alCICgvLc_FW81hOqTWrUiVgrXnYx",
+		// 		"text": "search"
+		// 	}
+		// }
 
-			// // $.ajax(settings).done(function (response) {
-			// $.ajax(autocompleteSettings).done(function (response) {
-			// 	console.log(response);
-			// });
+		// // $.ajax(settings).done(function (response) {
+		// $.ajax(autocompleteSettings).done(function (response) {
+		// 	console.log(response);
+		// });
 
-			// //Instagram tag api
-			// var tagSettings = {
-			// 	"async": true,
-			// 	"crossDomain": true,
-			// 	"url": "https://instagramdimashirokovv1.p.rapidapi.com/tag/travel/optional" + countryid,
-			// 	"method": "GET",
-			// 	"headers": {
-			// 		"x-rapidapi-host": "InstagramdimashirokovV1.p.rapidapi.com",
-			// 		"x-rapidapi-key": "de7f14a889msh47739a53de91d23p176494jsn5618424a7788"
-			// 	}
-			// }
+		// //Instagram tag api
+		// var tagSettings = {
+		// 	"async": true,
+		// 	"crossDomain": true,
+		// 	"url": "https://instagramdimashirokovv1.p.rapidapi.com/tag/travel/optional" + countryid,
+		// 	"method": "GET",
+		// 	"headers": {
+		// 		"x-rapidapi-host": "InstagramdimashirokovV1.p.rapidapi.com",
+		// 		"x-rapidapi-key": "de7f14a889msh47739a53de91d23p176494jsn5618424a7788"
+		// 	}
+		// }
 
-			// // $.ajax(settings).done(function (response) {
-			// $.ajax(tagSettings).done(function (response) {
-			// 	console.log(response);
+		// // $.ajax(settings).done(function (response) {
+		// $.ajax(tagSettings).done(function (response) {
+		// 	console.log(response);
 
-			// });	
-		});
+		// });	
 
 
 		// SEARCH FUNCTION
