@@ -6,11 +6,52 @@ $(document).ready(function () {
     authDomain: "group-b-project-one.firebaseapp.com",
     databaseURL: "https://group-b-project-one.firebaseio.com",
     projectId: "group-b-project-one",
-    storageBucket: "",
+    storageBucket: "group-b-project-one.appspot.com",
+
   };
 
   firebase.initializeApp(config);
+
   var dataRef = firebase.database();
+  // var storageS = firebase.storage();
+  // var storageRef = storageS.ref();
+ 
+  // document.querySelector('.file-select').addEventListener('change', handleFileUploadChange);
+  // document.querySelector('.file-submit').addEventListener('click', handleFileUploadSubmit);
+
+  // let selectedFile; 
+  // handleFileUploadChange(event) {
+  //   selectedFile = e.target.files[0];
+  // } 
+  // handleFileUploadSubmit(event) { 
+
+  //   const uploadTask = storageRef.child('images/${selectedFile.name}').put(selectedFile);
+
+  //   uploadTask.on('state_changed', (snapshot) => {
+
+  //   }, (error) => {
+  //     console.log(error);
+  //   }, () => {
+  //     console.log('success');
+  //   })
+  // }
+
+  //add image
+  window.addEventListener('load', function () {
+    document.querySelector('input[type="file"]').addEventListener('change', function () {
+
+      event.preventDefault();
+
+      for (i = 0; i < this.files.length; i++) {
+        if (this.files && this.files[i]) {
+          var img = document.querySelector('img');
+          img.src = URL.createObjectURL(this.files[i]);
+        }
+      }
+
+    });
+  });
+  
 
   // set initial values
   var place = "";
@@ -18,8 +59,9 @@ $(document).ready(function () {
   var date = "";
   var comment = "";
   var entryNum = 0;
-  var image = "";
 
+  
+  
   // capture button click
   $("#addMe").on("click", function (event) {
     event.preventDefault();
@@ -28,7 +70,7 @@ $(document).ready(function () {
     dest = $("#dest-input").val().trim();
     date = $("#date-input").val().trim();
     comment = $("#comments-input").val().trim();
-    console.log(place)
+    console.log(place);
 
     var newDiary = {
       place: place,
@@ -82,23 +124,9 @@ $(document).ready(function () {
     });
 
   // upload images
-  window.addEventListener('load', function () {
-    document.querySelector('input[type="file"]').addEventListener('change', function () {
+  
 
-      event.preventDefault();
-
-      for (i = 0; i < this.files.length; i++) {
-        if (this.files && this.files[i]) {
-
-          var img = document.querySelector('img');
-          img.src = URL.createObjectURL(this.files[i]);
-
-
-        }
-      }
-
-    });
-  });
+  
 
 
 });
