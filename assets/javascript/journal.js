@@ -13,10 +13,6 @@ $(document).ready(function () {
   firebase.initializeApp(config);
 
   var dataRef = firebase.database();
-<<<<<<< HEAD
-=======
-
->>>>>>> 516af4cd49e3ab2120602ab189b6152ecf505273
   // var storageS = firebase.storage();
   // var storageRef = storageS.ref();
  
@@ -55,10 +51,6 @@ $(document).ready(function () {
 
     });
   });
-<<<<<<< HEAD
-=======
-
->>>>>>> 516af4cd49e3ab2120602ab189b6152ecf505273
   
 
   // set initial values
