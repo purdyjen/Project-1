@@ -81,7 +81,11 @@ am4core.ready(function () {
 		popup.top = ev.svgPoint.y + 15;
 		$(".ampopup-header").hide();
 
-	
+
+
+		// MADE GLOBAL ALSO
+
+
 		// grabs the country id for geoDB api 
 		countryid = ev.target.dataItem.dataContext.id
 		// settings to pass to ajax call
@@ -228,7 +232,7 @@ am4core.ready(function () {
 	});
 
 
-
+	// THIS IS THE SEARCH FUNCTION
 
 	var inputTextValue = ("link-box").value;
 
@@ -239,9 +243,9 @@ am4core.ready(function () {
 
 	function searchPlaces() {
 
-		for (i = 0; i < polygonSeries.length; i++); {
+		for (i = 0; i < countryid.length; i++); {
 
-			if (inputTextValue === polygonSeries);
+			if (inputTextValue === countryid);
 			chart.openPopup();
 			$(".ampopup-header").hide();
 		}

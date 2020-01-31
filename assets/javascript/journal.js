@@ -13,6 +13,7 @@ $(document).ready(function () {
   firebase.initializeApp(config);
 
   var dataRef = firebase.database();
+
   // var storageS = firebase.storage();
   // var storageRef = storageS.ref();
  
@@ -53,6 +54,7 @@ $(document).ready(function () {
   });
   
 
+
   // set initial values
   var place = "";
   var dest = "";
@@ -60,8 +62,7 @@ $(document).ready(function () {
   var comment = "";
   var entryNum = 0;
 
-  
-  
+
   // capture button click
   $("#addMe").on("click", function (event) {
     event.preventDefault();
@@ -107,7 +108,10 @@ $(document).ready(function () {
 
 
 
-      // Prettify
+
+      // Prettify the employee start
+
+
       var datePretty = moment.unix(diaryDate).format("MM/DD/YYYY");
 
       // Create a new row for the table
