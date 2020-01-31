@@ -4,13 +4,15 @@ body {
 }
 
 .container {
-background-color: rgb(248, 248, 248, 0.7);
-padding: 30px
+    background-color: rgb(248, 248, 248, 0.7);
+    padding: 30px;
+    box-shadow: 2px 2px 8px rgb(184, 182, 182);
 }
 
 #addMe {
     background-color: rgb(106, 177, 153);
     border-color: beige;
+    font-size: 20px;
 }
 
 h1{
@@ -19,7 +21,7 @@ h1{
 
 }
 .brand-logo{
-margin-left: 30px;
+    margin-left: 30px;
 }
 
 .modal {
@@ -49,12 +51,12 @@ label{
  }
 
  .myImg{
-     width: 230px;
-     height: 250px;
+     width: 300px;
+     height: 300px;
      border-color: white ;
      border-style: solid;
      border-width: 10px;
-     border-bottom-width: 50px;
+     border-bottom-width: 60px;
      margin: 10px;
      filter: drop-shadow(0 0 0.75rem rgb(163, 161, 161));
  }
@@ -65,16 +67,16 @@ label{
      font-size: 20px;
     }
     
-    .navbar-brand {
-        text-shadow: 2px 2px 8px rgb(70, 69, 69);
-        font-size: 40px;
+ .navbar-brand {
+     text-shadow: 2px 2px 8px rgb(70, 69, 69);
+     font-size: 40px;
     }
     
-    .navbar-nav{
-        background-color:  #ec6d6dfa;
-        text-align: center;
-        line-height: 30px;     
-        border-radius: 10px;    
+ .navbar-nav{
+     background-color:  #ec6d6dfa;
+     text-align: center;
+     line-height: 30px;     
+     border-radius: 10px;    
  }
 
  #link-box {
@@ -88,3 +90,21 @@ label{
  th {
      font-size: 30px;
  }
+
+ #imgBox {
+     text-align: center;
+ }
+
+ #file-button {
+     font-size: 30px;
+     margin-left: 50px;
+ }
+#login{
+    font-size: 20px;
+    background-color: rgb(255, 255, 255, 0.7);
+}
+
+#logout{
+    font-size: 20px;
+    background-color: rgb(255, 255, 255, 0.7);
+}
