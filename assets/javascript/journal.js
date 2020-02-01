@@ -21,14 +21,14 @@ $(document).ready(function () {
 
     for (var i = 0; i < this.files.length; i++) {
 
-        var img = document.querySelector('img');
-        img.src = URL.createObjectURL(this.files[i]);
+      var img = document.querySelector('img');
+      img.src = URL.createObjectURL(this.files[i]);
 
-        var newImg = $("<img>");
-        newImg.attr("src", img.src);
-        newImg.addClass("myImg");
-        $("#imgBox").append(newImg);
-        console.log(this.files[i]);
+      var newImg = $("<img>");
+      newImg.attr("src", img.src);
+      newImg.addClass("myImg");
+      $("#imgBox").append(newImg);
+      console.log(this.files[i]);
     }
   });
 
@@ -112,16 +112,16 @@ $(document).ready(function () {
   // The start method will wait until the DOM is loaded.
   ui.start("#firebaseui-auth-container", uiConfig);
 
-var providersMap = {
-  google: new firebase.auth.GoogleAuthProvider(),
-}
+  var providersMap = {
+    google: new firebase.auth.GoogleAuthProvider(),
+  }
 
   function signInWithRedirect(providerName) {
     var provider = providersMap(providerName);
     return auth.signInWithRedirect(provider);
   }
 
-  function onAuthStateChanged(){
+  function onAuthStateChanged() {
     return auth.onAuthStateChanged();
   }
   // setup materialize components
@@ -141,7 +141,7 @@ var providersMap = {
     console.log("user signed out");
   });
 
- 
+
 
   firebase.auth().onAuthStateChanged(function (user) {
 
@@ -149,7 +149,6 @@ var providersMap = {
       // User is signed in.
       var currentUser = firebase.auth().currentUser;
       var userRef = dataRef.ref("/users");
-     
       if (currentUser === null) {
         // $("#my-journal").hide();
         // $("#logout").hide();
@@ -160,7 +159,7 @@ var providersMap = {
         // $("#logout").show();
         // $("#login").hide();
         console.log("Logged in.");
-        userRef.push(currentUser);
+        // userRef.push(currentUser);
       }
     }
   });
