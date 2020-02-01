@@ -11,7 +11,27 @@ $(document).ready(function() {
   firebase.initializeApp(config);
 
   var dataRef = firebase.database();
+
   var userRef = dataRef.ref("users");
+
+
+  //add image
+
+  document.querySelector('input[type="file"]').addEventListener('change', function () {
+    event.preventDefault();
+    for (i = 0; i < this.files.length; i++) {
+      if (this.files && this.files[i]) {
+        var img = document.querySelector('img');
+        img.src = URL.createObjectURL(this.files[i]);
+
+        var newImg = $("<img>");
+        newImg.attr("src", img.src);
+        newImg.addClass("myImg");
+        $("#imgBox").append(newImg);
+      }
+    }
+  });
+
 
   // set initial values
   var place = "";
@@ -19,7 +39,6 @@ $(document).ready(function() {
   var date = "";
   var comment = "";
   var entryNum = 0;
-
 
   // capture button click
   $("#addMe").on("click", function(event) {
@@ -61,8 +80,7 @@ $(document).ready(function() {
       var diaryComment = childSnapshot.val().comment;
 
 
-      // Prettify
-
+      // Prettify the employee start
       var datePretty = moment.unix(diaryDate).format("MM/DD/YYYY");
 
       // Create a new row for the table
@@ -78,23 +96,7 @@ $(document).ready(function() {
       $("#diary-table > tbody").prepend(newRow);
     });
 
-  // upload images
-
-  window.addEventListener("load", function() {
-    document
-      .querySelector('input[type="file"]')
-      .addEventListener("change", function() {
-        event.preventDefault();
-
-        for (i = 0; i < this.files.length; i++) {
-          if (this.files && this.files[i]) {
-            var img = document.querySelector("img");
-            img.src = URL.createObjectURL(this.files[i]);
-          }
-        }
-      });
-  });
-
+  // log-in
 
   var uiConfig = {
     signInSuccessUrl: "https://yenseydm.github.io/Project-1/diary.html",
@@ -110,17 +112,23 @@ $(document).ready(function() {
   ui.disableAutoSignIn();
   // The start method will wait until the DOM is loaded.
   ui.start("#firebaseui-auth-container", uiConfig);
-  
+  // setup materialize components
+  // document.addEventListener("DOMContentLoaded", function() {
+  //   var modals = document.querySelectorAll(".modal");
+  //   M.Modal.init(modals);
+  // });
+
 
   //logout
-  $("#logout").on("click", function() {
+  $("#logout").on("click", function () {
     event.preventDefault();
     firebase.auth().signOut();
-    // $("#my-journal").show();
-    // $("#logout").hide();
-    // $("#login").show();
+    $("#my-journal").show();
+    $("#logout").hide();
+    $("#login").show();
     console.log("user signed out");
   });
+
 
 // save the user's profile into Firebase so we can list users,
 // use them in Security and Firebase Rules, and show profiles
@@ -132,16 +140,16 @@ function writeUserData(userId, name, email) {
   console.log("user data set");
 }
 
+  firebase.auth().onAuthStateChanged(function (user) {
 
-  firebase.auth().onAuthStateChanged(function(user) {
     if (user) {
       // User is signed in.
       var currentUser = firebase.auth().currentUser;
-      var userRef = dataRef.ref("users");
+      var userRef = dataRef.ref("/users");
       if (currentUser === null) {
-        // $("#my-journal").hide();
-        // $("#logout").hide();
-        // $("#login").show();
+        $("#my-journal").hide();
+        $("#logout").hide();
+        $("#login").show();
         console.log("Not logged in.");
       } else {
         // $("#my-journal").show();
@@ -152,4 +160,5 @@ function writeUserData(userId, name, email) {
       }
     }
   });
+
 }); //doc ready closing tag

@@ -1,151 +1,190 @@
-// $(document).ready(function(){
+$(document).ready(function () {
 
-am4core.ready(function () {
+	am4core.ready(function () {
 
 
-	// Themes begin
-	am4core.useTheme(am4themes_animated);
-	// Themes end
+		// Themes begin
+		am4core.useTheme(am4themes_animated);
+		// Themes end
 
-	// Create map instance
-	var chart = am4core.create("chartdiv", am4maps.MapChart);
+		// Create map instance
+		var chart = am4core.create("chartdiv", am4maps.MapChart);
 
-	// Set map definition
-	chart.geodata = am4geodata_worldLow;
+		// Set map definition
+		chart.geodata = am4geodata_worldLow;
 
-	// Set projection
-	chart.projection = new am4maps.projections.Miller();
+		// Set projection
+		chart.projection = new am4maps.projections.Miller();
 
-	// Create map polygon series
-	var polygonSeries = chart.series.push(new am4maps.MapPolygonSeries());
+		// Create map polygon series
+		var polygonSeries = chart.series.push(new am4maps.MapPolygonSeries());
 
-	// Exclude Antartica
-	polygonSeries.exclude = ["AQ"];
+		// Exclude Antartica
+		polygonSeries.exclude = ["AQ"];
 
-	// Make map load polygon (like country names) data from GeoJSON
-	polygonSeries.useGeodata = true;
+		// Make map load polygon (like country names) data from GeoJSON
+		polygonSeries.useGeodata = true;
 
-	// Configure series
-	var polygonTemplate = polygonSeries.mapPolygons.template;
+		// Configure series
+		var polygonTemplate = polygonSeries.mapPolygons.template;
 
-	polygonTemplate.tooltipText = "{name}";
-	polygonTemplate.fill = chart.colors.getIndex(0).lighten(0.5);
+		polygonTemplate.tooltipText = "{name}";
+		polygonTemplate.fill = chart.colors.getIndex(0).lighten(0.5);
 
-	// Create hover state and set alternative fill color
-	var hs = polygonTemplate.states.create("hover");
-	hs.properties.fill = chart.colors.getIndex(0);
+		// Create hover state and set alternative fill color
+		var hs = polygonTemplate.states.create("hover");
+		hs.properties.fill = chart.colors.getIndex(0);
 
-	// POPUP ON CLICK  
-	polygonTemplate.events.on("hit", function (ev) {
-		chart.closeAllPopups();
-		var popup = chart.openPopup(ev.target.dataItem.dataContext.name);
-		popup.left = ev.svgPoint.x + 15;
-		popup.top = ev.svgPoint.y + 15;
-		$(".ampopup-header").hide();
+		// POPUP ON CLICK  
+		polygonTemplate.events.on("hit", function (ev) {
+			chart.closeAllPopups();
+			var popup = chart.openPopup(ev.target.dataItem.dataContext.name);
+			popup.left = ev.svgPoint.x + 15;
+			popup.top = ev.svgPoint.y + 15;
+			$(".ampopup-header").hide();
 
-		// grabs the country id for geoDB api 
-		countryid = ev.target.dataItem.dataContext.id
-		// settings to pass to ajax call
-		var geoDBsettings = {
-			"async": true,
-			"crossDomain": true,
-			"url": "https://wft-geo-db.p.rapidapi.com/v1/geo/countries/" + countryid,
-			"method": "GET",
-			"headers": {
-				"x-rapidapi-host": "wft-geo-db.p.rapidapi.com",
-				"x-rapidapi-key": "8c82e4dd37msh31e61bbc05c60afp12c20fjsn273f40e54380"
-			}
-		}
-		// geoDB ajax call
-		$.ajax(geoDBsettings).done(function (response) {
-			console.log(response);
-			// variables set from ajax response object
-			var numRegions = response.data.numRegions;
-			var currency = response.data.currencyCodes[0];
-			var flag = response.data.flagImageUri;
+			// grabs the country id for geoDB api 
+			countryid = ev.target.dataItem.dataContext.id
+			// settings to pass to geoDB ajax call
+			var geoDBsettings = {
+				"async": true,
+				"crossDomain": true,
+				"url": "https://wft-geo-db.p.rapidapi.com/v1/geo/countries/" + countryid,
+				"method": "GET",
+				"headers": {
+					"x-rapidapi-host": "wft-geo-db.p.rapidapi.com",
+					"x-rapidapi-key": "8c82e4dd37msh31e61bbc05c60afp12c20fjsn273f40e54380"
+				}
+			};
 
-			// inital tag creation
-			var regionInfo = $("<p>").text("Number of regions: " + numRegions);
-			var currencyInfo = $("<p>").text("Currency: " + currency)
-			var countryFlag = $("<img>").attr("src", flag);
-			countryFlag.addClass("flag-img");
+			var ccSettings = {
+				"async": true,
+				"crossDomain": true,
+				"url": "https://countries-cities.p.rapidapi.com/location/country/" + countryid + "?format=json",
+				"method": "GET",
+				"headers": {
+					"x-rapidapi-host": "countries-cities.p.rapidapi.com",
+					"x-rapidapi-key": "8c82e4dd37msh31e61bbc05c60afp12c20fjsn273f40e54380"
+				}
+			};
 
-			// appending tags to the overall div
-			var dataDump = $("<div>");
-			dataDump.append(regionInfo);
-			dataDump.append(currencyInfo);
-			dataDump.append(countryFlag);
+			// cc ajax call
+			$.ajax(ccSettings).done(function (ccResoponse) {
+				// console.log(ccResoponse);
+				// variables set from cc ajax response object
+				var capital = ccResoponse.capital;
+				var pop = ccResoponse.population;
 
-			// appending dataDump to popup
-			$(".ampopup-content").append(dataDump);
-		});
+				// geoDB ajax call
+				$.ajax(geoDBsettings).done(function (geoDBresponse) {
+					// console.log(geoDBresponse);
 
-			//yelp featured event api
-			// var eventSettings = {
-			// 	"async": true,
-			// 	"crossDomain": true,
-			// 	"url": "https://yelpapiserg-osipchukv1.p.rapidapi.com/getFeaturedEvent" + countryid,
-			// 	"method": "POST",
-			// 	"headers": {
-			// 		"x-rapidapi-host": "YelpAPIserg-osipchukV1.p.rapidapi.com",
-			// 		"x-rapidapi-key": "de7f14a889msh47739a53de91d23p176494jsn5618424a7788",
-			// 		"content-type": "application/x-www-form-urlencoded"
-			// 	},
-			// 	"data": {
-			// 		"locale": "search",
-			// 		"location": "city",
-			// 		"coordinates": "countryid",
-			// 		"accessToken": "FVtUcdjPbjyM3FzTfJ6z6w8fRLyWucMi_1rFrNntVL7m15VCiZVGznGIIuRbbC0KPcnAwbuu6S2gKqFmaqf8u5tZvSew4DD-747alCICgvLc_FW81hOqTWrUiVgrXnYx"
-			// 	}
-			// }
+					// variables set from geoDB ajax response object
+					var currency = geoDBresponse.data.currencyCodes[0];
+					var flag = geoDBresponse.data.flagImageUri;
 
-			// // $.ajax(EventSettings).done(function (response) {
-			// $.ajax(eventSettings).done(function (response) {
-			// 	console.log(response);
-			// });
+					// settings for currency exchange ajax call
+					// var currencyXsettings = {
+					// 	"async": true,
+					// 	"crossDomain": true,
+					// 	"url": "https://currency-converter5.p.rapidapi.com/currency/historical/2020-01-30?format=json&to=" + currency + "&from=USD&amount=1",
+					// 	"method": "GET",
+					// 	"headers": {
+					// 		"x-rapidapi-host": "currency-converter5.p.rapidapi.com",
+					// 		"x-rapidapi-key": "8c82e4dd37msh31e61bbc05c60afp12c20fjsn273f40e54380"
+					// 	}
+					// }
+					// currency exchange ajax call
+					// $.ajax(currencyXsettings).done(function (currencyXresponse) {
+					// 	console.log(currencyXresponse);
+					// 	console.log(currencyXresponse.rates.RUB.rate);
 
-			// //yelp autocomplete api
-			// var autocompleteSettings = {
-			// 	"async": true,
-			// 	"crossDomain": true,
-			// 	"url": "https://yelpapiserg-osipchukv1.p.rapidapi.com/getAutocomplete" + countryid,
-			// 	"method": "POST",
-			// 	"headers": {
-			// 		"x-rapidapi-host": "YelpAPIserg-osipchukV1.p.rapidapi.com",
-			// 		"x-rapidapi-key": "de7f14a889msh47739a53de91d23p176494jsn5618424a7788",
-			// 		"content-type": "application/x-www-form-urlencoded"
-			// 	},
-			// 	"data": {
-			// 		"coordinate": "countryid",
-			// 		"locale": "search",
-			// 		"accessToken": "FVtUcdjPbjyM3FzTfJ6z6w8fRLyWucMi_1rFrNntVL7m15VCiZVGznGIIuRbbC0KPcnAwbuu6S2gKqFmaqf8u5tZvSew4DD-747alCICgvLc_FW81hOqTWrUiVgrXnYx",
-			// 		"text": "search"
-			// 	}
-			// }
+					// set the variable for the exchange rate 
+					// var rate = currencyXresponse.rates.RUB.rate;
 
-			// // $.ajax(settings).done(function (response) {
-			// $.ajax(autocompleteSettings).done(function (response) {
-			// 	console.log(response);
-			// });
+					// inital tag creation
+					var capitalInfo = $("<p>").text("Capital: " + capital);
+					var popInfo = $("<p>").text("Population: " + pop);
+					var currencyInfo = $("<p>").text("Currency: " + currency);
+					// var currencyRate = $("<p>").text("Currency exchange rate to USD: " + rate)
+					var countryFlag = $("<img>").attr("src", flag);
+					countryFlag.addClass("flag-img");
 
-			// //Instagram tag api
-			// var tagSettings = {
-			// 	"async": true,
-			// 	"crossDomain": true,
-			// 	"url": "https://instagramdimashirokovv1.p.rapidapi.com/tag/travel/optional" + countryid,
-			// 	"method": "GET",
-			// 	"headers": {
-			// 		"x-rapidapi-host": "InstagramdimashirokovV1.p.rapidapi.com",
-			// 		"x-rapidapi-key": "de7f14a889msh47739a53de91d23p176494jsn5618424a7788"
-			// 	}
-			// }
+					// appending tags to the overall div
+					var dataDump = $("<div>");
+					dataDump.append(capitalInfo, popInfo, currencyInfo, countryFlag);
 
-			// // $.ajax(settings).done(function (response) {
-			// $.ajax(tagSettings).done(function (response) {
-			// 	console.log(response);
+					// appending dataDump to popup
+					$(".ampopup-content").append(dataDump);
+				});
+			});
+		})
 
-			// });	
-		});
+		//yelp featured event api
+		// var eventSettings = {
+		// 	"async": true,
+		// 	"crossDomain": true,
+		// 	"url": "https://yelpapiserg-osipchukv1.p.rapidapi.com/getFeaturedEvent" + countryid,
+		// 	"method": "POST",
+		// 	"headers": {
+		// 		"x-rapidapi-host": "YelpAPIserg-osipchukV1.p.rapidapi.com",
+		// 		"x-rapidapi-key": "de7f14a889msh47739a53de91d23p176494jsn5618424a7788",
+		// 		"content-type": "application/x-www-form-urlencoded"
+		// 	},
+		// 	"data": {
+		// 		"locale": "search",
+		// 		"location": "city",
+		// 		"coordinates": "countryid",
+		// 		"accessToken": "FVtUcdjPbjyM3FzTfJ6z6w8fRLyWucMi_1rFrNntVL7m15VCiZVGznGIIuRbbC0KPcnAwbuu6S2gKqFmaqf8u5tZvSew4DD-747alCICgvLc_FW81hOqTWrUiVgrXnYx"
+		// 	}
+		// }
+
+		// // $.ajax(EventSettings).done(function (response) {
+		// $.ajax(eventSettings).done(function (response) {
+		// 	console.log(response);
+		// });
+
+		// //yelp autocomplete api
+		// var autocompleteSettings = {
+		// 	"async": true,
+		// 	"crossDomain": true,
+		// 	"url": "https://yelpapiserg-osipchukv1.p.rapidapi.com/getAutocomplete" + countryid,
+		// 	"method": "POST",
+		// 	"headers": {
+		// 		"x-rapidapi-host": "YelpAPIserg-osipchukV1.p.rapidapi.com",
+		// 		"x-rapidapi-key": "de7f14a889msh47739a53de91d23p176494jsn5618424a7788",
+		// 		"content-type": "application/x-www-form-urlencoded"
+		// 	},
+		// 	"data": {
+		// 		"coordinate": "countryid",
+		// 		"locale": "search",
+		// 		"accessToken": "FVtUcdjPbjyM3FzTfJ6z6w8fRLyWucMi_1rFrNntVL7m15VCiZVGznGIIuRbbC0KPcnAwbuu6S2gKqFmaqf8u5tZvSew4DD-747alCICgvLc_FW81hOqTWrUiVgrXnYx",
+		// 		"text": "search"
+		// 	}
+		// }
+
+		// // $.ajax(settings).done(function (response) {
+		// $.ajax(autocompleteSettings).done(function (response) {
+		// 	console.log(response);
+		// });
+
+		// //Instagram tag api
+		// var tagSettings = {
+		// 	"async": true,
+		// 	"crossDomain": true,
+		// 	"url": "https://instagramdimashirokovv1.p.rapidapi.com/tag/travel/optional" + countryid,
+		// 	"method": "GET",
+		// 	"headers": {
+		// 		"x-rapidapi-host": "InstagramdimashirokovV1.p.rapidapi.com",
+		// 		"x-rapidapi-key": "de7f14a889msh47739a53de91d23p176494jsn5618424a7788"
+		// 	}
+		// }
+
+		// // $.ajax(settings).done(function (response) {
+		// $.ajax(tagSettings).done(function (response) {
+		// 	console.log(response);
+
+		// });	
 
 
 		// SEARCH FUNCTION
