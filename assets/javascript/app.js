@@ -38,7 +38,19 @@
 //GeoDB Cities API
 
 
+	// POPUP ON CLICK  
+	polygonTemplate.events.on("hit", function(ev) {
+		doChartPopup(ev);
+	});
 
+	// Popup on click icon
+	$(".pulse").on("click", function(ev) {
+		console.log("clicked!");
+		// doChartPopup(ev);
+	});
+
+	// Popup on search search submit or select
+	
 
 
 am4core.ready(function () {
@@ -301,21 +313,5 @@ am4core.ready(function () {
 
 		return holder;
 	}
-
-
-	// POPUP ON CLICK  
-	polygonTemplate.events.on("hit", function (ev) {
-		doChartPopup(ev);
-	});
-
-	// Popup on click icon
-	$("#map-marker").on("click", function() {
-		console.log("clicked!");
-		// doChartPopup(ev);
-	});
-
-	// Popup on search search submit or select
-	
-
 
 }); // end am4core.ready()
