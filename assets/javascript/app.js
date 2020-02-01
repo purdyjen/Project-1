@@ -346,7 +346,6 @@ $(document).ready(function () {
 			var dot = document.createElement('div');
 			dot.className = 'dot';
 			holder.appendChild(dot);
-
 			// create pulse
 			var pulse = document.createElement('div');
 			pulse.className = 'pulse';
