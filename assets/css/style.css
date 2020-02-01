@@ -224,7 +224,7 @@ h1 {
    padding: 0px;
    width: 100%;
    height: 60px;
-   background-color: #ec6d6dfa;
+   background-color:  #006699;
    color: white;
    text-align: center;
 }
@@ -252,7 +252,7 @@ h1 {
 }
 
 nav {
-   background-color: #ec6d6dfa;
+   background-color:  #006699;
    color: white;
    font-size: 20px;
 }
@@ -263,7 +263,7 @@ nav {
   }
   
   .navbar-nav{
-      background-color:  #ec6d6dfa;
+      background-color:   #006699;
       text-align: center;
       line-height: 30px;    
       border-radius: 10px;   

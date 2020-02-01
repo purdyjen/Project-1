@@ -42,6 +42,8 @@ $(document).ready(function () {
 			popup.left = ev.svgPoint.x + 15;
 			popup.top = ev.svgPoint.y + 15;
 			$(".ampopup-header").hide();
+			
+			
 
 			// grabs the country id for geoDB api 
 			countryid = ev.target.dataItem.dataContext.id
