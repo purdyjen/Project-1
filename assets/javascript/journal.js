@@ -12,6 +12,9 @@ $(document).ready(function () {
 
   var dataRef = firebase.database();
 
+  var userRef = dataRef.ref("users");
+
+
   //add image
 
   document.querySelector('input[type="file"]').addEventListener('change', function () {
@@ -28,6 +31,7 @@ $(document).ready(function () {
       }
     }
   });
+
 
   // set initial values
   var place = "";
@@ -108,6 +112,19 @@ $(document).ready(function () {
   ui.disableAutoSignIn();
   // The start method will wait until the DOM is loaded.
   ui.start("#firebaseui-auth-container", uiConfig);
+
+var providersMap = {
+  google: new firebase.auth.GoogleAuthProvider(),
+}
+
+  function signInWithRedirect(providerName) {
+    var provider = providersMap(providerName);
+    return auth.signInWithRedirect(provider);
+  }
+
+  function onAuthStateChanged(){
+    return auth.onAuthStateChanged();
+  }
   // setup materialize components
   // document.addEventListener("DOMContentLoaded", function() {
   //   var modals = document.querySelectorAll(".modal");
@@ -125,22 +142,26 @@ $(document).ready(function () {
     console.log("user signed out");
   });
 
+ 
+
   firebase.auth().onAuthStateChanged(function (user) {
+
     if (user) {
       // User is signed in.
       var currentUser = firebase.auth().currentUser;
       var userRef = dataRef.ref("/users");
-      userRef.push();
+     
       if (currentUser === null) {
-        $("#my-journal").hide();
-        $("#logout").hide();
-        $("#login").show();
+        // $("#my-journal").hide();
+        // $("#logout").hide();
+        // $("#login").show();
         console.log("Not logged in.");
       } else {
         // $("#my-journal").show();
         // $("#logout").show();
         // $("#login").hide();
         console.log("Logged in.");
+        userRef.push(currentUser);
       }
     }
   });
