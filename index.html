@@ -6,32 +6,37 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
-  <!--Materialize-->
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-  <link type="text/css" rel="stylesheet" href="assets/css/materialize.min.css" media="screen,projection" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <!--Our CSS-->
-  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+  <!--favicon -->
+  <link rel="shortcut icon" type="image/png" href="../Project-1/assets/images/pin.png" />
+  <!-- materialize-->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <!-- Compiled and minified CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
 
-  <!--Google Fonts-->
-  <link href="https://fonts.googleapis.com/css?family=Amatic+SC|Open+Sans+Condensed:300&display=swap" rel="stylesheet">
+  <!-- Compiled and minified JavaScript -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 
-  <!--JQuery-->
-  <script
-  src="https://code.jquery.com/jquery-3.4.1.min.js"
-  integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
-  crossorigin="anonymous"></script>
+  <!-- bootstrap-->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 
-  <!--Firebase-->
+  <!-- firebase-->
   <script src="https://www.gstatic.com/firebasejs/6.0.4/firebase-app.js"></script>
   <script src="https://www.gstatic.com/firebasejs/6.0.4/firebase-database.js"></script>
-
-  <!--Amcharts-->
+  <!-- map -->
   <script src="https://www.amcharts.com/lib/4/core.js"></script>
   <script src="https://www.amcharts.com/lib/4/maps.js"></script>
   <script src="https://www.amcharts.com/lib/4/geodata/worldLow.js"></script>
   <script src="https://www.amcharts.com/lib/4/themes/animated.js"></script>
+  <!-- Moment.js Reference -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js"></script>
+  <!-- internal style/script -->
+  <link rel="stylesheet" href="../Project-1/assets/css/reset.css">
+  <link rel="stylesheet" href="../Project-1/assets/css/style.css">
   <script type="text/javascript" src="assets/javascript/app.js"></script>
 
 
@@ -40,51 +45,46 @@
 </head>
 
 <body>
-  <nav>
-    <div class="nav-wrapper">
-      <a href="#!" class="brand-logo"> The Bucket </a>
-      <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
-      <ul class="right hide-on-med-and-down">
-        <li><a href="index.html">Home</a></li>
-        <li><a href="sass.html">Log-in</a></li>
-        <li><a href="diary.html">My Journal</a></li>
-        <li>
-          <form>
-            <div class="input-field">
-              <input id="search search-button" type="search" required>
-              <label class="label-icon" for="search"><i class="material-icons">search</i></label>
-              <i class="material-icons">close</i>
-            </div>
-          </form>
-        </li>
-      </ul>
+
+  <!-- nav bar-->
+  <nav class="navbar navbar-expand-lg navbar-dark" id="nav">
+    <a class="navbar-brand" href="index.html">The Bucket</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
+      aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+      <div class="navbar-nav">
+        <a class="nav-item nav-link active" href="index.html">Home <span class="sr-only">(current)</span></a>
+        <a class="nav-item nav-link active" href="diary.html">My Journal</a>
+      </div>
     </div>
   </nav>
 
-
-
-  <ul class="sidenav" id="mobile-demo">
-    <li><a href="index.html">Home</a></li>
-    <li><a href="sass.html">Log-in</a></li>
-    <li><a href="diary.html">My Journal</a></li>
-  </ul>
-
-
-  <!--   <input type="text" id="link-box">
-  <input type="button" id="search-button" value="Search"> -->
-
-
-
-
-  <h1> The Bucket</h1>
-
-  <!-- this holds the map -->
+  <!-- start of content-->
+  <br><br>
   <div class="container">
+
+    <h1> The Bucket</h1>
+
+    <!-- this holds the map -->
+
     <div id="chartdiv"></div>
+
+    <!-- search box -->
+    <div id="searchbox">
+      <input type="text" id="link-box" placeholder="Search Location">
+      <input type="button" id="search-button" value="Search">
+    </div>
   </div>
 
-  <script type="text/javascript" src="assets/javascript/materialize.min.js"></script>
-
+  <footer class="footer">
+    <div class="footer-copyright">
+      <div id="copy">
+        © 2020 The Bucket Group
+      </div>
+    </div>
+  </footer>
 </body>
 
 </html>
