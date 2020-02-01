@@ -142,60 +142,26 @@ var providersMap = {
     console.log("user signed out");
   });
 
+ 
 
-// save the user's profile into Firebase so we can list users,
-// use them in Security and Firebase Rules, and show profiles
-function writeUserData(userId, name, email) {
-  userRef.child(userId).set({
-    userId: userId,
-    email: email
-  });
-  console.log("user data set");
-}
-
-
-function signInWithEmailAndPassword({ email, password }) {
-  return auth.signInWithEmailAndPassword(email, password).catch(error => {
-    if (error.code == 'auth/user-not-found') {
-      changeView('prompt-register');
-    } else if (error.code == 'auth/wrong-password') {
-      changeView('bad-password');
-    }
-    handleError(error);
-  });
-}
-
-function createUserWithEmailAndPassword({ email, password }) {
-  return auth.createUserWithEmailAndPassword(email, password).catch(error => {
-    if (error.code == 'auth/email-already-in-use') {
-      changeView('duplicate-account');
-    }
-    handleError(error);
-  });
-}
-
-return {
-  signInWithEmailAndPassword,
-  createUserWithEmailAndPassword,
-};
   firebase.auth().onAuthStateChanged(function (user) {
 
     if (user) {
       // User is signed in.
       var currentUser = firebase.auth().currentUser;
       var userRef = dataRef.ref("/users");
-      userRef.push();
+     
       if (currentUser === null) {
-        $("#my-journal").hide();
-        $("#logout").hide();
-        $("#login").show();
+        // $("#my-journal").hide();
+        // $("#logout").hide();
+        // $("#login").show();
         console.log("Not logged in.");
       } else {
         // $("#my-journal").show();
         // $("#logout").show();
         // $("#login").hide();
         console.log("Logged in.");
-        writeUserData (userId, name, email);
+        userRef.push(currentUser);
       }
     }
   });
