@@ -28,10 +28,9 @@ $(document).ready(function () {
         newImg.attr("src", img.src);
         newImg.addClass("myImg");
         $("#imgBox").append(newImg);
-
+        console.log(this.files[i]);
     }
   });
-
 
   // set initial values
   var place = "";
