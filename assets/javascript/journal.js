@@ -1,11 +1,11 @@
-$(document).ready(function() {
+$(document).ready(function () {
   // Initialize firebase
   const config = {
     apiKey: "AIzaSyDgVXzyxHgZtoc_mcbqu-qRr_bdPNFJx3I",
     authDomain: "group-b-project-one.firebaseapp.com",
     databaseURL: "https://group-b-project-one.firebaseio.com",
     projectId: "group-b-project-one",
-    storageBucket: ""
+    storageBucket: "group-b-project-one.appspot.com",
   };
 
   firebase.initializeApp(config);
@@ -41,34 +41,34 @@ $(document).ready(function() {
   var entryNum = 0;
 
   // capture button click
-  $("#addMe").on("click", function(event) {
-    event.preventDefault();
+  $("#addMe").on("click", function (event) {
+      event.preventDefault();
 
 
-    place = $("#place-input").val().trim();
-    dest = $("#dest-input").val().trim();
-    date = $("#date-input").val().trim();
-    comment = $("#comments-input").val().trim();
-    console.log(place);
+      place = $("#place-input").val().trim();
+      dest = $("#dest-input").val().trim();
+      date = $("#date-input").val().trim();
+      comment = $("#comments-input").val().trim();
+      console.log(place);
 
-    var newDiary = {
-      place: place,
-      dest: dest,
-      date: date,
-      comment: comment,
-      dateAdded: firebase.database.ServerValue.TIMESTAMP
-    };
-    // push to firebase
-    dataRef.ref().push(newDiary);
+      var newDiary = {
+        place: place,
+        dest: dest,
+        date: date,
+        comment: comment,
+        dateAdded: firebase.database.ServerValue.TIMESTAMP
+      };
+      // push to firebase
+      dataRef.ref().push(newDiary);
 
-    // Clears all of the text-boxes
-    $("#place-input").val("");
-    $("#dest-input").val("");
-    $("#date-input").val("");
-    $("#comment-input").val("");
-  }),
+      // Clears all of the text-boxes
+      $("#place-input").val("");
+      $("#dest-input").val("");
+      $("#date-input").val("");
+      $("#comment-input").val("");
+    }),
     // Firebase watcher
-    dataRef.ref().on("child_added", function(childSnapshot) {
+    dataRef.ref().on("child_added", function (childSnapshot) {
       // view the object
       console.log(childSnapshot.val());
       entryNum++;
@@ -146,6 +146,7 @@ function writeUserData(userId, name, email) {
       // User is signed in.
       var currentUser = firebase.auth().currentUser;
       var userRef = dataRef.ref("/users");
+      userRef.push();
       if (currentUser === null) {
         $("#my-journal").hide();
         $("#logout").hide();
