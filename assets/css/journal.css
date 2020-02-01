@@ -41,7 +41,7 @@ label{
     margin:0px;
     width: 100%;
     height: 60px;
-    background-color:  #ec6d6dfa;
+    background-color:   #006699;
     color: white;
     text-align: center;
 }
@@ -62,7 +62,7 @@ label{
  }
 
  nav {
-     background-color: #ec6d6dfa;
+     background-color:  #006699;
      color: white;
      font-size: 20px;
     }
@@ -73,7 +73,7 @@ label{
     }
     
  .navbar-nav{
-     background-color:  #ec6d6dfa;
+     background-color:   #006699;
      text-align: center;
      line-height: 30px;     
      border-radius: 10px;    
