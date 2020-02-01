@@ -112,6 +112,19 @@ $(document).ready(function () {
   ui.disableAutoSignIn();
   // The start method will wait until the DOM is loaded.
   ui.start("#firebaseui-auth-container", uiConfig);
+
+var providersMap = {
+  google: new firebase.auth.GoogleAuthProvider(),
+}
+
+  function signInWithRedirect(providerName) {
+    var provider = providersMap(providerName);
+    return auth.signInWithRedirect(provider);
+  }
+
+  function onAuthStateChanged(){
+    return auth.onAuthStateChanged();
+  }
   // setup materialize components
   // document.addEventListener("DOMContentLoaded", function() {
   //   var modals = document.querySelectorAll(".modal");
@@ -140,6 +153,31 @@ function writeUserData(userId, name, email) {
   console.log("user data set");
 }
 
+
+function signInWithEmailAndPassword({ email, password }) {
+  return auth.signInWithEmailAndPassword(email, password).catch(error => {
+    if (error.code == 'auth/user-not-found') {
+      changeView('prompt-register');
+    } else if (error.code == 'auth/wrong-password') {
+      changeView('bad-password');
+    }
+    handleError(error);
+  });
+}
+
+function createUserWithEmailAndPassword({ email, password }) {
+  return auth.createUserWithEmailAndPassword(email, password).catch(error => {
+    if (error.code == 'auth/email-already-in-use') {
+      changeView('duplicate-account');
+    }
+    handleError(error);
+  });
+}
+
+return {
+  signInWithEmailAndPassword,
+  createUserWithEmailAndPassword,
+};
   firebase.auth().onAuthStateChanged(function (user) {
 
     if (user) {
