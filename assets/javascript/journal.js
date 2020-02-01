@@ -17,10 +17,10 @@ $(document).ready(function () {
 
   //add image
 
-  document.querySelector('input[type="file"]').addEventListener('change', function () {
-    event.preventDefault();
-    for (i = 0; i < this.files.length; i++) {
-      if (this.files && this.files[i]) {
+  $('input[type="file"]').change(function () {
+
+    for (var i = 0; i < this.files.length; i++) {
+
         var img = document.querySelector('img');
         img.src = URL.createObjectURL(this.files[i]);
 
@@ -28,10 +28,9 @@ $(document).ready(function () {
         newImg.attr("src", img.src);
         newImg.addClass("myImg");
         $("#imgBox").append(newImg);
-      }
+        console.log(this.files[i]);
     }
   });
-
 
   // set initial values
   var place = "";

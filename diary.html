@@ -130,14 +130,13 @@
 
         <!-- upload images -->
         <br><br>
-        <div id="imgBox">
-            <input id="file-button" type="file" name="myImage" multiple="multiple" accept="image/*">
+        
+        <div id="imgBox" method="post" enctype="multipart/form/data">
+            <input id="file-button" type="file" name="files[]" accept="image/*"  multiple>
             <br><br>
         </div>
     </div>
 
-
-    
 
     <br><br>
 
